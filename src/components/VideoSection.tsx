@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { gsap } from 'gsap';
 
 interface VideoSectionProps {
   videoUrl: string;

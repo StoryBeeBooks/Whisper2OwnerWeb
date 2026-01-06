@@ -1,18 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import { WaveScene } from '@/components/three/WaveScene';
-import { HeroSection } from '@/components/HeroSection';
-
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { Hero3D } from '@/components/three/Hero3D';
 
 // Assets to preload
 const ASSETS_TO_LOAD = [
@@ -23,109 +16,33 @@ const ASSETS_TO_LOAD = [
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const mainRef = useRef<HTMLDivElement>(null);
-  const heroContainerRef = useRef<HTMLDivElement>(null);
-  const section1ContainerRef = useRef<HTMLDivElement>(null);
-  const section1DotRef = useRef<HTMLDivElement>(null);
-  const section1ContentRef = useRef<HTMLDivElement>(null);
-  const section2ContainerRef = useRef<HTMLDivElement>(null);
-  const section2ContentRef = useRef<HTMLDivElement>(null);
+  
+  const containerRef = useRef<HTMLDivElement>(null);
+  const section2Ref = useRef<HTMLDivElement>(null);
+  const section3Ref = useRef<HTMLDivElement>(null);
 
-  const handleLoadingComplete = useCallback(() => {
+  // Track scroll for dot expansion (using window scroll for sections below Canvas)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // Dot expansion: starts at 30% scroll, completes at 45%
+  const dotScale = useTransform(scrollYProgress, [0.28, 0.45], [0, 60]);
+  const dotOpacity = useTransform(scrollYProgress, [0.28, 0.32], [0, 1]);
+
+  // Section 2 content fade in: 45% to 55%
+  const section2ContentOpacity = useTransform(scrollYProgress, [0.45, 0.55], [0, 1]);
+  const section2ContentY = useTransform(scrollYProgress, [0.45, 0.55], [50, 0]);
+
+  // Section 2 fade out / Section 3 fade in: 65% to 80%
+  const section2FadeOut = useTransform(scrollYProgress, [0.65, 0.75], [1, 0]);
+  const section3FadeIn = useTransform(scrollYProgress, [0.70, 0.85], [0, 1]);
+  const section3ContentY = useTransform(scrollYProgress, [0.70, 0.85], [50, 0]);
+
+  const handleLoadingComplete = () => {
     setIsLoading(false);
-  }, []);
-
-  // Setup scroll animations
-  useEffect(() => {
-    if (isLoading) return;
-
-    const ctx = gsap.context(() => {
-      // Hero section - controls 3D wave zoom
-      ScrollTrigger.create({
-        trigger: heroContainerRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 0.5,
-        onUpdate: (self) => {
-          setScrollProgress(self.progress);
-        },
-      });
-
-      // Section 1 - Dot expansion effect
-      if (section1ContainerRef.current && section1DotRef.current && section1ContentRef.current) {
-        const tl1 = gsap.timeline({
-          scrollTrigger: {
-            trigger: section1ContainerRef.current,
-            start: 'top bottom',
-            end: 'top top',
-            scrub: 1,
-          },
-        });
-
-        // Expand from dot to full screen
-        tl1.fromTo(
-          section1DotRef.current,
-          { 
-            scale: 0,
-            borderRadius: '50%',
-          },
-          { 
-            scale: 50,
-            borderRadius: '0%',
-            ease: 'power2.inOut',
-          }
-        );
-
-        // Fade in content after expansion
-        gsap.fromTo(
-          section1ContentRef.current,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            scrollTrigger: {
-              trigger: section1ContainerRef.current,
-              start: 'top 20%',
-              end: 'top -10%',
-              scrub: 1,
-            },
-          }
-        );
-
-        // Fade out section 1 as user scrolls to section 2
-        gsap.to(section1ContentRef.current, {
-          opacity: 0,
-          scale: 0.95,
-          scrollTrigger: {
-            trigger: section2ContainerRef.current,
-            start: 'top 80%',
-            end: 'top 30%',
-            scrub: 1,
-          },
-        });
-      }
-
-      // Section 2 - Fade in effect
-      if (section2ContainerRef.current && section2ContentRef.current) {
-        gsap.fromTo(
-          section2ContentRef.current,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            scrollTrigger: {
-              trigger: section2ContainerRef.current,
-              start: 'top 60%',
-              end: 'top 20%',
-              scrub: 1,
-            },
-          }
-        );
-      }
-    }, mainRef);
-
-    return () => ctx.revert();
-  }, [isLoading]);
+  };
 
   return (
     <>
@@ -139,46 +56,47 @@ export default function Home() {
 
       {/* Main Content */}
       <div
-        ref={mainRef}
-        className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+        ref={containerRef}
+        className={`relative transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
       >
-        {/* Navigation */}
+        {/* Navigation - Fixed */}
         <Navigation />
 
-        {/* Hero Section with 3D Wave - White Background */}
-        <div
-          ref={heroContainerRef}
-          className="relative h-[250vh]"
-        >
-          {/* Fixed 3D background */}
-          <div className="sticky top-0 h-screen w-full bg-warm-white">
-            <WaveScene scrollProgress={scrollProgress} />
-            <HeroSection scrollProgress={scrollProgress} />
-          </div>
+        {/* 3D Hero Scene - Fixed background with ScrollControls */}
+        <Hero3D onScrollProgress={setScrollProgress} />
+
+        {/* Scroll spacer for 3D section (matches ScrollControls pages) */}
+        <div className="relative h-[500vh]">
+          {/* This creates scroll space for the 3D scene */}
         </div>
 
-        {/* Section 1: International Opportunities - Expanding Dot */}
+        {/* Section 2: International Opportunities - Expanding Dot */}
         <div 
-          ref={section1ContainerRef}
+          ref={section2Ref}
           className="relative h-[200vh]"
         >
           <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-            {/* Expanding dot/circle that becomes full screen */}
-            <div
-              ref={section1DotRef}
-              className="absolute w-[100px] h-[100px] rounded-full overflow-hidden"
-              style={{ 
-                transform: 'scale(0)',
+            {/* Expanding dot that reveals video */}
+            <motion.div
+              className="absolute rounded-full overflow-hidden"
+              style={{
+                width: 100,
+                height: 100,
+                scale: dotScale,
+                opacity: dotOpacity,
               }}
             >
-              {/* Video Background inside the expanding element */}
-              <div className="absolute inset-0 w-[100vw] h-[100vh]" style={{ 
-                width: '100vw', 
-                height: '100vh',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%)',
-              }}>
+              {/* Video container - positioned to fill viewport when scaled */}
+              <div 
+                className="absolute"
+                style={{ 
+                  width: '100vw', 
+                  height: '100vh',
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
                 <video
                   autoPlay
                   loop
@@ -191,49 +109,52 @@ export default function Home() {
                     type="video/mp4" 
                   />
                 </video>
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-luxury-black/60" />
+                {/* Dark overlay - 50% opacity */}
+                <div className="absolute inset-0 bg-black/50" />
               </div>
-            </div>
+            </motion.div>
 
             {/* Content */}
-            <div 
-              ref={section1ContentRef}
+            <motion.div 
               className="relative z-10 text-center px-6 max-w-4xl mx-auto"
-              style={{ opacity: 0 }}
+              style={{
+                opacity: section2ContentOpacity,
+                y: section2ContentY,
+              }}
             >
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6 leading-tight">
                 Global Reach, Local Impact
               </h2>
-              <p className="text-white/80 text-base md:text-lg font-light leading-relaxed mb-6 max-w-2xl mx-auto">
+              <p className="text-white/90 text-base md:text-lg font-light leading-relaxed mb-8 max-w-2xl mx-auto">
                 We connect international brands and organizations seeking entry into the Canadian 
-                market with established local distribution networks.
-              </p>
-              <p className="text-white/60 text-sm md:text-base font-light leading-relaxed mb-10 max-w-2xl mx-auto">
-                Our expertise extends to facilitating exports to key markets including 
-                England, Colombia, Argentina, and China — opening doors to global opportunities.
+                market with established local distribution networks. Our expertise extends to 
+                facilitating exports to key markets including England, Colombia, Argentina, 
+                and China  opening doors to global opportunities.
               </p>
               <a
                 href="/international-opportunities"
                 className="inline-block bg-transparent text-white px-8 py-4 rounded-luxury
                            font-normal text-sm tracking-luxury uppercase
-                           border border-white/50 hover:bg-white hover:text-luxury-black
-                           transition-all duration-300 hover:-translate-y-0.5 pointer-events-auto"
+                           border border-white hover:bg-white hover:text-luxury-black
+                           transition-all duration-300"
               >
                 Explore International Opportunities
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Section 2: Sales Network */}
+        {/* Section 3: Sales Network - Cross-dissolve transition */}
         <div 
-          ref={section2ContainerRef}
+          ref={section3Ref}
           className="relative min-h-screen"
         >
           <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
             {/* Video Background */}
-            <div className="absolute inset-0 z-0">
+            <motion.div 
+              className="absolute inset-0 z-0"
+              style={{ opacity: section3FadeIn }}
+            >
               <video
                 autoPlay
                 loop
@@ -246,59 +167,36 @@ export default function Home() {
                   type="video/mp4" 
                 />
               </video>
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-luxury-black/65" />
-            </div>
+              {/* Dark overlay - 50% opacity */}
+              <div className="absolute inset-0 bg-black/50" />
+            </motion.div>
 
             {/* Content */}
-            <div 
-              ref={section2ContentRef}
+            <motion.div 
               className="relative z-10 text-center px-6 max-w-5xl mx-auto py-20"
+              style={{
+                opacity: section3FadeIn,
+                y: section3ContentY,
+              }}
             >
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6 leading-tight">
                 A Network Built for Brands
               </h2>
-              <p className="text-white/80 text-base md:text-lg font-light leading-relaxed mb-8 max-w-2xl mx-auto">
-                Our curated sales network connects your products with the right audiences 
-                through trusted local partnerships.
+              <p className="text-white/90 text-base md:text-lg font-light leading-relaxed mb-8 max-w-2xl mx-auto">
+                We manage a local sales network including small businesses, storefronts, 
+                boutique gyms, community leaders, supermarket chains, and online platforms 
+                like Amazon, Shopify, Etsy, eBay, and Groupon.
               </p>
-              
-              {/* Network highlights */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl mx-auto">
-                {[
-                  'Local Storefronts',
-                  'Small Businesses',
-                  'Boutique Gyms',
-                  'Community Leaders',
-                  'Supermarket Chains',
-                  'Amazon Store',
-                  'Shopify Store',
-                  'Etsy & eBay',
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="px-3 py-2 border border-white/20 rounded-luxury
-                               text-white/70 text-xs tracking-wide uppercase"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <p className="text-white/50 text-sm font-light mb-10">
-                Plus Groupon, online marketplaces, and many more distribution channels.
-              </p>
-
               <a
                 href="/sales-network"
                 className="inline-block bg-transparent text-white px-8 py-4 rounded-luxury
                            font-normal text-sm tracking-luxury uppercase
-                           border border-white/50 hover:bg-white hover:text-luxury-black
-                           transition-all duration-300 hover:-translate-y-0.5"
+                           border border-white hover:bg-white hover:text-luxury-black
+                           transition-all duration-300"
               >
-                Discover Our Network
+                View Sales Network
               </a>
-            </div>
+            </motion.div>
           </section>
         </div>
 
