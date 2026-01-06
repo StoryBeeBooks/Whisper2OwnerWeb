@@ -8,7 +8,6 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { WaveScene } from '@/components/three/WaveScene';
 import { HeroSection } from '@/components/HeroSection';
-import { VideoSection } from '@/components/VideoSection';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -26,8 +25,11 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
   const heroContainerRef = useRef<HTMLDivElement>(null);
-  const section1Ref = useRef<HTMLDivElement>(null);
-  const section2Ref = useRef<HTMLDivElement>(null);
+  const section1ContainerRef = useRef<HTMLDivElement>(null);
+  const section1DotRef = useRef<HTMLDivElement>(null);
+  const section1ContentRef = useRef<HTMLDivElement>(null);
+  const section2ContainerRef = useRef<HTMLDivElement>(null);
+  const section2ContentRef = useRef<HTMLDivElement>(null);
 
   const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
@@ -38,64 +40,83 @@ export default function Home() {
     if (isLoading) return;
 
     const ctx = gsap.context(() => {
-      // Hero section - controls 3D wave zoom and text fade
+      // Hero section - controls 3D wave zoom
       ScrollTrigger.create({
         trigger: heroContainerRef.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 1,
+        scrub: 0.5,
         onUpdate: (self) => {
           setScrollProgress(self.progress);
         },
       });
 
-      // Section 1 - International Opportunities
-      if (section1Ref.current) {
-        const content1 = section1Ref.current.querySelector('.section-content');
-        
+      // Section 1 - Dot expansion effect
+      if (section1ContainerRef.current && section1DotRef.current && section1ContentRef.current) {
+        const tl1 = gsap.timeline({
+          scrollTrigger: {
+            trigger: section1ContainerRef.current,
+            start: 'top bottom',
+            end: 'top top',
+            scrub: 1,
+          },
+        });
+
+        // Expand from dot to full screen
+        tl1.fromTo(
+          section1DotRef.current,
+          { 
+            scale: 0,
+            borderRadius: '50%',
+          },
+          { 
+            scale: 50,
+            borderRadius: '0%',
+            ease: 'power2.inOut',
+          }
+        );
+
+        // Fade in content after expansion
         gsap.fromTo(
-          content1,
-          { opacity: 0, y: 50 },
+          section1ContentRef.current,
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
-            duration: 1,
             scrollTrigger: {
-              trigger: section1Ref.current,
-              start: 'top 80%',
-              end: 'top 30%',
+              trigger: section1ContainerRef.current,
+              start: 'top 20%',
+              end: 'top -10%',
               scrub: 1,
             },
           }
         );
 
-        // Fade out as user scrolls past
-        gsap.to(content1, {
+        // Fade out section 1 as user scrolls to section 2
+        gsap.to(section1ContentRef.current, {
           opacity: 0,
+          scale: 0.95,
           scrollTrigger: {
-            trigger: section1Ref.current,
-            start: 'bottom 60%',
-            end: 'bottom top',
+            trigger: section2ContainerRef.current,
+            start: 'top 80%',
+            end: 'top 30%',
             scrub: 1,
           },
         });
       }
 
-      // Section 2 - Sales Network
-      if (section2Ref.current) {
-        const content2 = section2Ref.current.querySelector('.section-content');
-        
+      // Section 2 - Fade in effect
+      if (section2ContainerRef.current && section2ContentRef.current) {
         gsap.fromTo(
-          content2,
+          section2ContentRef.current,
           { opacity: 0, y: 50 },
           {
             opacity: 1,
             y: 0,
-            duration: 1,
             scrollTrigger: {
-              trigger: section2Ref.current,
-              start: 'top 80%',
-              end: 'top 30%',
+              trigger: section2ContainerRef.current,
+              start: 'top 60%',
+              end: 'top 20%',
               scrub: 1,
             },
           }
@@ -124,41 +145,63 @@ export default function Home() {
         {/* Navigation */}
         <Navigation />
 
-        {/* Hero Section with 3D Wave */}
+        {/* Hero Section with 3D Wave - White Background */}
         <div
           ref={heroContainerRef}
-          className="relative h-[200vh]"
+          className="relative h-[250vh]"
         >
           {/* Fixed 3D background */}
-          <div className="sticky top-0 h-screen w-full">
+          <div className="sticky top-0 h-screen w-full bg-warm-white">
             <WaveScene scrollProgress={scrollProgress} />
             <HeroSection scrollProgress={scrollProgress} />
           </div>
         </div>
 
-        {/* Section 1: International Opportunities */}
-        <div ref={section1Ref}>
-          <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Video Background */}
-            <div className="absolute inset-0 z-0">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              >
-                <source 
-                  src="https://assets.k12path.com/whisper2owner/main1.mp4" 
-                  type="video/mp4" 
-                />
-              </video>
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-luxury-black/65" />
+        {/* Section 1: International Opportunities - Expanding Dot */}
+        <div 
+          ref={section1ContainerRef}
+          className="relative h-[200vh]"
+        >
+          <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+            {/* Expanding dot/circle that becomes full screen */}
+            <div
+              ref={section1DotRef}
+              className="absolute w-[100px] h-[100px] rounded-full overflow-hidden"
+              style={{ 
+                transform: 'scale(0)',
+              }}
+            >
+              {/* Video Background inside the expanding element */}
+              <div className="absolute inset-0 w-[100vw] h-[100vh]" style={{ 
+                width: '100vw', 
+                height: '100vh',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source 
+                    src="https://assets.k12path.com/whisper2owner/main1.mp4" 
+                    type="video/mp4" 
+                  />
+                </video>
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-luxury-black/60" />
+              </div>
             </div>
 
             {/* Content */}
-            <div className="section-content relative z-10 text-center px-6 max-w-4xl mx-auto py-20">
+            <div 
+              ref={section1ContentRef}
+              className="relative z-10 text-center px-6 max-w-4xl mx-auto"
+              style={{ opacity: 0 }}
+            >
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6 leading-tight">
                 Global Reach, Local Impact
               </h2>
@@ -175,16 +218,19 @@ export default function Home() {
                 className="inline-block bg-transparent text-white px-8 py-4 rounded-luxury
                            font-normal text-sm tracking-luxury uppercase
                            border border-white/50 hover:bg-white hover:text-luxury-black
-                           transition-all duration-300 hover:-translate-y-0.5"
+                           transition-all duration-300 hover:-translate-y-0.5 pointer-events-auto"
               >
                 Explore International Opportunities
               </a>
             </div>
-          </section>
+          </div>
         </div>
 
         {/* Section 2: Sales Network */}
-        <div ref={section2Ref}>
+        <div 
+          ref={section2ContainerRef}
+          className="relative min-h-screen"
+        >
           <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
             {/* Video Background */}
             <div className="absolute inset-0 z-0">
@@ -205,7 +251,10 @@ export default function Home() {
             </div>
 
             {/* Content */}
-            <div className="section-content relative z-10 text-center px-6 max-w-5xl mx-auto py-20">
+            <div 
+              ref={section2ContentRef}
+              className="relative z-10 text-center px-6 max-w-5xl mx-auto py-20"
+            >
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-6 leading-tight">
                 A Network Built for Brands
               </h2>

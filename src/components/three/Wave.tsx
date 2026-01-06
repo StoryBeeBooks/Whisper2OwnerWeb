@@ -12,17 +12,17 @@ export function Wave({ scrollProgress = 0 }: WaveProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
-  // Shader uniforms
+  // Shader uniforms - elegant colors for white background
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },
     uScrollProgress: { value: 0 },
-    uColor1: { value: new THREE.Color('#1a1a1a') },
-    uColor2: { value: new THREE.Color('#b8a88a') },
-    uColor3: { value: new THREE.Color('#8ab88a') },
-    uColor4: { value: new THREE.Color('#8a9db8') },
+    uColor1: { value: new THREE.Color('#d4cfc7') }, // warm taupe
+    uColor2: { value: new THREE.Color('#b8a88a') }, // champagne gold
+    uColor3: { value: new THREE.Color('#e8e4dc') }, // warm sand
+    uColor4: { value: new THREE.Color('#c4bfb6') }, // lighter taupe
   }), []);
 
-  // Vertex shader - creates wave distortion
+  // Vertex shader - creates wave distortion with zoom effect
   const vertexShader = `
     uniform float uTime;
     uniform float uScrollProgress;
@@ -32,14 +32,14 @@ export function Wave({ scrollProgress = 0 }: WaveProps) {
     void main() {
       vUv = uv;
       
-      // Wave parameters
-      float frequency = 2.0;
-      float amplitude = 0.3 + uScrollProgress * 0.2;
+      // Wave parameters - gentler waves
+      float frequency = 1.5;
+      float amplitude = 0.4;
       
       // Create multiple wave layers
-      float wave1 = sin(position.x * frequency + uTime * 0.5) * amplitude;
-      float wave2 = sin(position.y * frequency * 0.8 + uTime * 0.3) * amplitude * 0.5;
-      float wave3 = sin((position.x + position.y) * frequency * 0.5 + uTime * 0.4) * amplitude * 0.3;
+      float wave1 = sin(position.x * frequency + uTime * 0.4) * amplitude;
+      float wave2 = sin(position.y * frequency * 0.7 + uTime * 0.25) * amplitude * 0.6;
+      float wave3 = sin((position.x + position.y) * frequency * 0.4 + uTime * 0.3) * amplitude * 0.4;
       
       float elevation = wave1 + wave2 + wave3;
       vElevation = elevation;
@@ -47,15 +47,11 @@ export function Wave({ scrollProgress = 0 }: WaveProps) {
       vec3 newPosition = position;
       newPosition.z += elevation;
       
-      // Camera zoom effect based on scroll
-      float zoomFactor = 1.0 + uScrollProgress * 2.0;
-      newPosition.z -= uScrollProgress * 3.0;
-      
       gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
     }
   `;
 
-  // Fragment shader - creates gradient coloring
+  // Fragment shader - elegant gradient for white background
   const fragmentShader = `
     uniform float uTime;
     uniform float uScrollProgress;
@@ -68,18 +64,18 @@ export function Wave({ scrollProgress = 0 }: WaveProps) {
     
     void main() {
       // Dynamic color mixing based on position and time
-      float mixFactor1 = sin(vUv.x * 3.14159 + uTime * 0.2) * 0.5 + 0.5;
-      float mixFactor2 = sin(vUv.y * 3.14159 + uTime * 0.15) * 0.5 + 0.5;
+      float mixFactor1 = sin(vUv.x * 3.14159 + uTime * 0.15) * 0.5 + 0.5;
+      float mixFactor2 = sin(vUv.y * 3.14159 + uTime * 0.1) * 0.5 + 0.5;
       
       vec3 color1 = mix(uColor1, uColor2, mixFactor1);
       vec3 color2 = mix(uColor3, uColor4, mixFactor2);
       vec3 finalColor = mix(color1, color2, vElevation * 0.5 + 0.5);
       
-      // Add subtle brightness based on elevation
-      finalColor += vElevation * 0.1;
+      // Add subtle brightness variation based on elevation
+      finalColor += vElevation * 0.08;
       
-      // Fade to black as user scrolls
-      finalColor = mix(finalColor, vec3(0.0), uScrollProgress * 0.3);
+      // Subtle darkening as we zoom in
+      finalColor = mix(finalColor, finalColor * 0.85, uScrollProgress * 0.5);
       
       gl_FragColor = vec4(finalColor, 1.0);
     }
@@ -94,8 +90,8 @@ export function Wave({ scrollProgress = 0 }: WaveProps) {
   });
 
   return (
-    <mesh ref={meshRef} rotation={[-Math.PI * 0.35, 0, 0]} position={[0, -0.5, 0]}>
-      <planeGeometry args={[15, 15, 128, 128]} />
+    <mesh ref={meshRef} rotation={[-Math.PI * 0.5, 0, 0]} position={[0, 0, 0]}>
+      <planeGeometry args={[20, 20, 150, 150]} />
       <shaderMaterial
         ref={materialRef}
         uniforms={uniforms}
