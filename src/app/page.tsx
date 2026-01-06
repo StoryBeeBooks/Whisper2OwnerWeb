@@ -8,10 +8,10 @@ import Overlay from './_components/Overlay';
 
 export default function Page() {
   return (
-    <main className="h-screen w-full bg-warm-white relative">
+    <main className="h-screen w-full bg-black relative">
       {/* The Canvas covers the entire screen and stays fixed */}
       <Canvas 
-        camera={{ position: [0, 10, 0], fov: 50 }} 
+        camera={{ position: [0, 5, 0], fov: 60 }} 
         className="absolute top-0 left-0 w-full h-full"
       >
         <Suspense fallback={null}>
@@ -27,8 +27,8 @@ export default function Page() {
           </ScrollControls>
         </Suspense>
         
-        {/* White background */}
-        <color attach="background" args={['#faf9f6']} />
+        {/* Black background to match wave */}
+        <color attach="background" args={['#000000']} />
       </Canvas>
       
       {/* Loading Screen from drei */}
