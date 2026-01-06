@@ -3,57 +3,34 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-luxury-black text-white py-12 px-6">
+    <footer className="bg-warm-white py-6 px-6 border-t border-warm-sand">
       <div className="max-w-7xl mx-auto">
-        {/* Main footer content */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-          {/* Brand */}
-          <div className="text-center md:text-left">
-            <h3 className="font-display text-xl font-light tracking-wide mb-2">
-              Whisper2Owner
-            </h3>
-            <p className="text-white/50 text-xs tracking-wide">
-              Bridging International Brands with Canadian Consumers
-            </p>
-          </div>
-
-          {/* Links */}
-          <nav className="flex items-center gap-2 text-sm">
-            <Link 
-              href="/policies" 
-              className="text-white/70 hover:text-white transition-colors duration-200 
-                         tracking-wide uppercase text-xs px-3 py-1"
-            >
-              Policies
-            </Link>
-            <span className="text-white/30">|</span>
-            <Link 
-              href="/faq" 
-              className="text-white/70 hover:text-white transition-colors duration-200 
-                         tracking-wide uppercase text-xs px-3 py-1"
-            >
-              FAQ
-            </Link>
-            <span className="text-white/30">|</span>
-            <a 
-              href="mailto:support@Whisper2Owner.com" 
-              className="text-white/70 hover:text-white transition-colors duration-200 
-                         text-xs px-3 py-1"
-            >
-              support@Whisper2Owner.com
-            </a>
-          </nav>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px bg-white/10 mb-6" />
-
-        {/* Copyright */}
-        <div className="text-center">
-          <p className="text-white/40 text-xs tracking-wide">
+        <nav className="flex items-center justify-center gap-2 text-xs tracking-wide">
+          <Link 
+            href="/policies" 
+            className="text-luxury-gray-light hover:text-luxury-black transition-colors duration-200 uppercase"
+          >
+            Policies
+          </Link>
+          <span className="text-warm-taupe">|</span>
+          <Link 
+            href="/faq" 
+            className="text-luxury-gray-light hover:text-luxury-black transition-colors duration-200 uppercase"
+          >
+            FAQ
+          </Link>
+          <span className="text-warm-taupe">|</span>
+          <a 
+            href="mailto:support@Whisper2Owner.com" 
+            className="text-luxury-gray-light hover:text-luxury-black transition-colors duration-200 uppercase"
+          >
+            support@Whisper2Owner.com
+          </a>
+          <span className="text-warm-taupe">|</span>
+          <span className="text-luxury-gray-light uppercase">
             © 2026 Whisper2Owner.com
-          </p>
-        </div>
+          </span>
+        </nav>
       </div>
     </footer>
   );
