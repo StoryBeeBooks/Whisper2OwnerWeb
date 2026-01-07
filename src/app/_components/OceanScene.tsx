@@ -37,7 +37,7 @@ function Ship() {
       const time = state.clock.elapsedTime;
       
       // Bob up and down using sine wave
-      shipRef.current.position.y = -15 + Math.sin(time * bobFrequency) * bobAmplitude;
+      shipRef.current.position.y = -22 + Math.sin(time * bobFrequency) * bobAmplitude;
       
       // Rock back and forth (rotation on Z axis)
       shipRef.current.rotation.z = Math.sin(time * rockFrequency) * rockAmplitude;
@@ -48,7 +48,7 @@ function Ship() {
   });
 
   return (
-    <group ref={shipRef} position={[0, -15, 0]}>
+    <group ref={shipRef} position={[0, -22, 0]}>
       <primitive 
         object={scene} 
         scale={responsiveScale}
