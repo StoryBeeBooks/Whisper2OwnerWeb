@@ -1,6 +1,6 @@
 'use client';
 
-import { DollarSign, Building, Landmark, MapPin, Factory, Cpu, Leaf, ShoppingBag, Briefcase, GraduationCap, Heart, Truck, ExternalLink } from 'lucide-react';
+import { DollarSign, Building, Landmark, MapPin, Factory, Cpu, Leaf, ShoppingBag, Briefcase, GraduationCap, Heart, Truck, ExternalLink, Timer, FileQuestion, Layers, Target, Search, CheckCircle, FileText, Lightbulb, Award, Clock, Handshake, TrendingUp, Users } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -15,6 +15,48 @@ export default function CanadaFundingPage() {
     { value: '1,500+', labelKey: 'funding.stat.programs' },
     { value: '40%', labelKey: 'funding.stat.srnd' },
     { value: '75%', labelKey: 'funding.stat.wage' },
+  ];
+
+  const painPoints = [
+    { icon: Timer, titleKey: 'funding.pain.time', descKey: 'funding.pain.time.desc' },
+    { icon: Layers, titleKey: 'funding.pain.complexity', descKey: 'funding.pain.complexity.desc' },
+    { icon: FileQuestion, titleKey: 'funding.pain.eligibility', descKey: 'funding.pain.eligibility.desc' },
+    { icon: Target, titleKey: 'funding.pain.opportunity', descKey: 'funding.pain.opportunity.desc' },
+  ];
+
+  const services = [
+    { 
+      icon: Search, 
+      titleKey: 'funding.service.discovery', 
+      subtitleKey: 'funding.service.discovery.subtitle',
+      descKey: 'funding.service.discovery.desc',
+      features: ['funding.service.discovery.f1', 'funding.service.discovery.f2', 'funding.service.discovery.f3', 'funding.service.discovery.f4'],
+      painSolvedKey: 'funding.service.discovery.solve'
+    },
+    { 
+      icon: CheckCircle, 
+      titleKey: 'funding.service.eligibility', 
+      subtitleKey: 'funding.service.eligibility.subtitle',
+      descKey: 'funding.service.eligibility.desc',
+      features: ['funding.service.eligibility.f1', 'funding.service.eligibility.f2', 'funding.service.eligibility.f3', 'funding.service.eligibility.f4'],
+      painSolvedKey: 'funding.service.eligibility.solve'
+    },
+    { 
+      icon: FileText, 
+      titleKey: 'funding.service.application', 
+      subtitleKey: 'funding.service.application.subtitle',
+      descKey: 'funding.service.application.desc',
+      features: ['funding.service.application.f1', 'funding.service.application.f2', 'funding.service.application.f3', 'funding.service.application.f4'],
+      painSolvedKey: 'funding.service.application.solve'
+    },
+    { 
+      icon: TrendingUp, 
+      titleKey: 'funding.service.ongoing', 
+      subtitleKey: 'funding.service.ongoing.subtitle',
+      descKey: 'funding.service.ongoing.desc',
+      features: ['funding.service.ongoing.f1', 'funding.service.ongoing.f2', 'funding.service.ongoing.f3', 'funding.service.ongoing.f4'],
+      painSolvedKey: 'funding.service.ongoing.solve'
+    },
   ];
 
   const federalPrograms = [
@@ -114,6 +156,162 @@ export default function CanadaFundingPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Pain Points Section - The Reality for Small Businesses */}
+          <section className="mb-16 md:mb-24">
+            <div className="text-center mb-10 md:mb-14">
+              <h2 className="font-display text-xl md:text-2xl lg:text-3xl text-luxury-black font-light tracking-wide mb-4">
+                {t('funding.painTitle')}
+              </h2>
+              <p className="text-luxury-gray text-sm md:text-base font-light max-w-3xl mx-auto">
+                {t('funding.painSubtitle')}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {painPoints.map((pain) => {
+                const IconComponent = pain.icon;
+                return (
+                  <div
+                    key={pain.titleKey}
+                    className="p-6 md:p-8 bg-gradient-to-br from-amber-50/30 to-warm-card border border-amber-100/50 rounded-luxury"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <IconComponent strokeWidth={1} className="w-6 h-6 text-amber-700" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-lg md:text-xl text-luxury-black font-medium mb-2">
+                          {t(pain.titleKey)}
+                        </h3>
+                        <p className="text-luxury-gray text-sm md:text-base font-light leading-relaxed">
+                          {t(pain.descKey)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Our Services - Detailed Solutions */}
+          <section className="mb-16 md:mb-24">
+            <div className="text-center mb-10 md:mb-14">
+              <h2 className="font-display text-xl md:text-2xl lg:text-3xl text-luxury-black font-light tracking-wide mb-4 uppercase">
+                {t('funding.servicesTitle')}
+              </h2>
+              <p className="text-luxury-gray text-sm md:text-base font-light max-w-3xl mx-auto">
+                {t('funding.servicesSubtitle')}
+              </p>
+            </div>
+
+            <div className="space-y-8 md:space-y-12">
+              {services.map((service, index) => {
+                const IconComponent = service.icon;
+                const isEven = index % 2 === 0;
+                return (
+                  <div
+                    key={service.titleKey}
+                    className={`p-6 md:p-10 bg-gradient-to-br ${isEven ? 'from-emerald-50/50 to-warm-card' : 'from-blue-50/50 to-warm-card'} border border-warm-sand rounded-luxury`}
+                  >
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
+                      {/* Service Header */}
+                      <div className="lg:col-span-1">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className={`w-14 h-14 ${isEven ? 'bg-emerald-100' : 'bg-blue-100'} rounded-full flex items-center justify-center`}>
+                            <IconComponent strokeWidth={1} className={`w-7 h-7 ${isEven ? 'text-emerald-700' : 'text-blue-700'}`} />
+                          </div>
+                          <div>
+                            <span className={`text-xs font-medium ${isEven ? 'text-emerald-600' : 'text-blue-600'} uppercase tracking-wider`}>
+                              {t('funding.service.label')} {index + 1}
+                            </span>
+                          </div>
+                        </div>
+                        <h3 className="font-display text-xl md:text-2xl text-luxury-black font-medium mb-2">
+                          {t(service.titleKey)}
+                        </h3>
+                        <p className={`text-sm ${isEven ? 'text-emerald-700' : 'text-blue-700'} font-medium mb-4`}>
+                          {t(service.subtitleKey)}
+                        </p>
+                        <p className="text-luxury-gray text-sm md:text-base font-light leading-relaxed">
+                          {t(service.descKey)}
+                        </p>
+                      </div>
+
+                      {/* Features */}
+                      <div className="lg:col-span-1">
+                        <h4 className="text-sm font-medium text-luxury-black uppercase tracking-wider mb-4">
+                          {t('funding.service.whatWeDeliver')}
+                        </h4>
+                        <ul className="space-y-3">
+                          {service.features.map((feature) => (
+                            <li key={feature} className="flex items-start gap-2">
+                              <CheckCircle strokeWidth={1.5} className={`w-5 h-5 ${isEven ? 'text-emerald-600' : 'text-blue-600'} flex-shrink-0 mt-0.5`} />
+                              <span className="text-luxury-gray text-sm font-light">{t(feature)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Pain Solved */}
+                      <div className="lg:col-span-1">
+                        <div className={`p-5 ${isEven ? 'bg-emerald-100/50' : 'bg-blue-100/50'} rounded-lg`}>
+                          <h4 className="text-sm font-medium text-luxury-black uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <Lightbulb strokeWidth={1.5} className="w-4 h-4" />
+                            {t('funding.service.howItHelps')}
+                          </h4>
+                          <p className={`text-sm ${isEven ? 'text-emerald-800' : 'text-blue-800'} font-light leading-relaxed`}>
+                            {t(service.painSolvedKey)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Partnership Model Banner */}
+          <section className="mb-16 md:mb-24 bg-gradient-to-r from-luxury-black to-slate-800 rounded-luxury p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              <div className="md:col-span-2">
+                <h2 className="font-display text-2xl md:text-3xl text-white font-light tracking-wide mb-4">
+                  {t('funding.partnerTitle')}
+                </h2>
+                <p className="text-white/80 text-sm md:text-base font-light leading-relaxed mb-4">
+                  {t('funding.partnerDesc')}
+                </p>
+                <p className="text-white/80 text-sm md:text-base font-light leading-relaxed">
+                  {t('funding.partnerDesc2')}
+                </p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <Handshake strokeWidth={1} className="w-8 h-8 text-emerald-400" />
+                  <div>
+                    <div className="text-white font-medium">{t('funding.partner.shared')}</div>
+                    <div className="text-white/60 text-sm">{t('funding.partner.shared.desc')}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Award strokeWidth={1} className="w-8 h-8 text-amber-400" />
+                  <div>
+                    <div className="text-white font-medium">{t('funding.partner.success')}</div>
+                    <div className="text-white/60 text-sm">{t('funding.partner.success.desc')}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Users strokeWidth={1} className="w-8 h-8 text-blue-400" />
+                  <div>
+                    <div className="text-white font-medium">{t('funding.partner.dedicated')}</div>
+                    <div className="text-white/60 text-sm">{t('funding.partner.dedicated.desc')}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
