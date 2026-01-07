@@ -133,7 +133,7 @@ export default function OceanScene() {
       
       <main className="h-[calc(100vh-52px)] w-full relative bg-gradient-to-b from-white from-0% via-sky-200 via-70% to-[#001e36] to-100%">
         <Canvas
-          camera={{ position: [0, 5, 35], fov: 45 }}
+          camera={{ position: [0, 5, 25], fov: 45, near: 0.1, far: 2000 }}
           className="absolute inset-0 z-0"
           shadows
           gl={{ alpha: true }}
