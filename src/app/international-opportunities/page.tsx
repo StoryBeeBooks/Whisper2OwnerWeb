@@ -1,8 +1,19 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
+
+// Dynamically import GlobeScene to avoid SSR issues with Three.js
+const GlobeScene = dynamic(() => import('@/app/_components/GlobeScene'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-b from-slate-900 via-slate-800 to-luxury-black flex items-center justify-center">
+      <div className="text-white/50 text-sm font-light">Loading globe...</div>
+    </div>
+  ),
+});
 
 const VIDEO_URL = 'https://assets.k12path.com/whisper2owner/barley.mp4';
 
@@ -124,6 +135,11 @@ export default function InternationalOpportunitiesPage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Interactive Globe Section */}
+          <section className="mb-10 md:mb-16 -mx-4 md:-mx-6">
+            <GlobeScene />
           </section>
 
           <section className="mb-10 md:mb-16">
