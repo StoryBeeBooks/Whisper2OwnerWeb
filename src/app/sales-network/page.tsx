@@ -1,6 +1,6 @@
 'use client';
 
-import { Globe, Store, Handshake, ShoppingCart, Building2, Box } from 'lucide-react';
+import { Globe, Store, Handshake, ShoppingCart, Building2, Box, Target, Zap, GlobeIcon } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -276,7 +276,7 @@ export default function SalesNetworkPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center p-6">
                 <div className="w-16 h-16 mx-auto mb-4 bg-luxury-black rounded-full flex items-center justify-center">
-                  <span className="text-white text-2xl">🎯</span>
+                  <Target strokeWidth={1} className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="font-display text-base md:text-lg text-luxury-black font-medium mb-2">
                   {t('salesNetwork.whyUs.results')}
@@ -287,7 +287,7 @@ export default function SalesNetworkPage() {
               </div>
               <div className="text-center p-6">
                 <div className="w-16 h-16 mx-auto mb-4 bg-luxury-black rounded-full flex items-center justify-center">
-                  <span className="text-white text-2xl">⚡</span>
+                  <Zap strokeWidth={1} className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="font-display text-base md:text-lg text-luxury-black font-medium mb-2">
                   {t('salesNetwork.whyUs.speed')}
@@ -298,7 +298,7 @@ export default function SalesNetworkPage() {
               </div>
               <div className="text-center p-6">
                 <div className="w-16 h-16 mx-auto mb-4 bg-luxury-black rounded-full flex items-center justify-center">
-                  <span className="text-white text-2xl">🌍</span>
+                  <GlobeIcon strokeWidth={1} className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="font-display text-base md:text-lg text-luxury-black font-medium mb-2">
                   {t('salesNetwork.whyUs.reach')}
