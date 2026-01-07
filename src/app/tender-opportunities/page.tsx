@@ -652,7 +652,7 @@ export default function TenderOpportunitiesPage() {
               {t('tender.ctaDesc')}
             </p>
             <a
-              href="mailto:support@Whisper2Owner.com"
+              href="mailto:mario.xu@wtheory.com"
               className="inline-block px-8 py-3 bg-white text-luxury-black text-sm md:text-base font-medium rounded-luxury
                          hover:bg-warm-sand transition-colors duration-300"
             >

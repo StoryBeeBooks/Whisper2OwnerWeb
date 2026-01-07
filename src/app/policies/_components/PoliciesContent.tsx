@@ -218,7 +218,7 @@ function PrivacyPolicy() {
       <SubSection title="5. Your Rights">
         <p>
           You have the right to access, correct, or delete your personal information. To exercise these rights,
-          please contact us at support@Whisper2Owner.com.
+          please contact us at mario.xu@wtheory.com.
         </p>
       </SubSection>
     </div>
@@ -306,7 +306,7 @@ function AccessibilityPolicy() {
 
       <SubSection title="Feedback">
         <p>
-          We welcome your feedback on the accessibility of our website. Please contact us at support@Whisper2Owner.com
+          We welcome your feedback on the accessibility of our website. Please contact us at mario.xu@wtheory.com
           if you encounter any accessibility barriers or have suggestions for improvement.
         </p>
       </SubSection>

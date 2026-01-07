@@ -169,7 +169,7 @@ export default function InternationalOpportunitiesPage() {
               {t('international.readyToExpand')}
             </p>
             <a
-              href="mailto:support@Whisper2Owner.com"
+              href="mailto:mario.xu@wtheory.com"
               className="btn-primary inline-block text-xs md:text-sm"
             >
               {t('international.startConversation')}

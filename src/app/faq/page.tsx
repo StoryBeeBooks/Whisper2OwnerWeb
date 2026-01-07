@@ -51,7 +51,7 @@ export default function FAQPage() {
               {t('faq.moreQuestions')}
             </p>
             <a
-              href="mailto:support@Whisper2Owner.com"
+              href="mailto:mario.xu@wtheory.com"
               className="btn-secondary inline-block text-xs md:text-sm"
             >
               {t('faq.contactSupport')}

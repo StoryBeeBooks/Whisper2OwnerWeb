@@ -18,7 +18,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.canadaFunding': 'Canada Funding',
     'nav.tenderOpportunities': 'Tender Opportunities',
     'nav.internationalOpportunities': 'International Opportunities',
-    'nav.supportEmail': 'support@Whisper2Owner.com',
+    'nav.supportEmail': 'mario.xu@wtheory.com',
     'nav.copyright': '2026 Whisper2Owner.com',
     
     // Footer
@@ -507,7 +507,7 @@ const translations: Record<Language, Record<string, string>> = {
     'faq.q4': 'What sales channels are available through your network?',
     'faq.a4': 'Our network includes local storefronts, small businesses, boutique gyms, community leaders, supermarket chains, Amazon, Shopify, Etsy, eBay, Groupon, and more.',
     'faq.q5': 'How do I get started?',
-    'faq.a5': 'Contact us at support@Whisper2Owner.com to discuss your business needs and explore partnership opportunities.',
+    'faq.a5': 'Contact us at mario.xu@wtheory.com to discuss your business needs and explore partnership opportunities.',
     'faq.moreQuestions': 'Don\'t see your question here?',
     'faq.contactSupport': 'Contact Support',
     
@@ -526,7 +526,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.canadaFunding': '政府补助',
     'nav.tenderOpportunities': '政府招标',
     'nav.internationalOpportunities': '国际机会',
-    'nav.supportEmail': 'support@Whisper2Owner.com',
+    'nav.supportEmail': 'mario.xu@wtheory.com',
     'nav.copyright': '2026 Whisper2Owner.com',
     
     // Footer
@@ -1015,7 +1015,7 @@ const translations: Record<Language, Record<string, string>> = {
     'faq.q4': '通过你们的网络有哪些销售渠道？',
     'faq.a4': '我们的网络包括本地店铺、小型企业、精品健身房、社区领袖、连锁超市、亚马逊、Shopify、Etsy、eBay、Groupon等。',
     'faq.q5': '如何开始合作？',
-    'faq.a5': '请通过support@Whisper2Owner.com联系我们，讨论您的业务需求并探索合作机会。',
+    'faq.a5': '请通过mario.xu@wtheory.com联系我们，讨论您的业务需求并探索合作机会。',
     'faq.moreQuestions': '没有找到您的问题？',
     'faq.contactSupport': '联系客服',
     

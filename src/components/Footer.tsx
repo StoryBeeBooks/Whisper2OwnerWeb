@@ -29,10 +29,10 @@ export function Footer() {
           </div>
           <span className="text-warm-taupe hidden sm:inline">|</span>
           <a 
-            href="mailto:support@Whisper2Owner.com" 
+            href="mailto:mario.xu@wtheory.com" 
             className="text-luxury-gray-light hover:text-luxury-black transition-colors duration-200 uppercase text-center"
           >
-            support@Whisper2Owner.com
+            mario.xu@wtheory.com
           </a>
           <span className="text-warm-taupe hidden sm:inline">|</span>
           <span className="text-luxury-gray-light uppercase">
