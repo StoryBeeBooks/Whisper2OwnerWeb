@@ -97,7 +97,6 @@ function Ship() {
 // Camera Controller for scroll-based zoom
 function CameraController() {
   const scroll = useScroll();
-  const { camera } = useFrame.arguments?.[0] || {};
 
   useFrame(({ camera }) => {
     const zoomProgress = scroll.range(0, 0.25);
