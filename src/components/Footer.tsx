@@ -26,6 +26,13 @@ export function Footer() {
             >
               {t('footer.faq')}
             </Link>
+            <span className="text-warm-taupe">|</span>
+            <Link 
+              href="/subscribe" 
+              className="text-luxury-gray-light hover:text-luxury-black transition-colors duration-200 uppercase"
+            >
+              {t('footer.subscribe')}
+            </Link>
           </div>
           <span className="text-warm-taupe hidden sm:inline">|</span>
           <a 
