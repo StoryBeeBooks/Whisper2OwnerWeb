@@ -37,7 +37,7 @@ function Ship() {
       const time = state.clock.elapsedTime;
       
       // Bob up and down using sine wave
-      shipRef.current.position.y = -22 + Math.sin(time * bobFrequency) * bobAmplitude;
+      shipRef.current.position.y = -33 + Math.sin(time * bobFrequency) * bobAmplitude;
       
       // Rock back and forth (rotation on Z axis)
       shipRef.current.rotation.z = Math.sin(time * rockFrequency) * rockAmplitude;
@@ -48,7 +48,7 @@ function Ship() {
   });
 
   return (
-    <group ref={shipRef} position={[0, -22, 0]}>
+    <group ref={shipRef} position={[0, -33, 0]}>
       <primitive 
         object={scene} 
         scale={responsiveScale}
@@ -122,7 +122,7 @@ function SceneContent() {
 // Main OceanScene Component
 export default function OceanScene() {
   return (
-    <main className="h-screen w-full relative bg-gradient-to-b from-white via-sky-200 to-[#001e36]">
+    <main className="h-screen w-full relative bg-gradient-to-b from-white from-0% via-sky-200 via-70% to-[#001e36] to-100%">
       <Canvas
         camera={{ position: [0, 5, 35], fov: 45 }}
         className="absolute inset-0 z-0"
