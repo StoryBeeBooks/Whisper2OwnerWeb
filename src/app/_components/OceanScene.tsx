@@ -17,9 +17,10 @@ import * as THREE from 'three';
 // Configuration - adjust these as needed
 const SEA_URL = 'https://assets.k12path.com/whisper2owner/sea.glb';
 const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
-const SEA_SCALE = 100;  // Try 10, 100, or 0.01 depending on model
-const SHIP_SCALE = 50;  // Adjust based on model size
+const SEA_SCALE = 500;  // Much larger to surround the ship
+const SHIP_SCALE = 50;  // Ship scale
 const ANIMATION_SPEED = 0.4; // 40% speed (60% slower)
+const OCEAN_COLOR = '#001e36'; // Dark ocean blue for background and fog
 
 // Animated Sea Component
 function Sea() {
@@ -54,7 +55,7 @@ function Sea() {
   return (
     <primitive 
       object={scene} 
-      position={[0, -50, 0]}
+      position={[0, -10, 0]}
       scale={SEA_SCALE}
     />
   );
@@ -117,15 +118,21 @@ function CameraController() {
   return null;
 }
 
-// Text Overlay (simplified for debugging)
+// Text Overlay with better contrast
 function Overlay() {
   return (
     <Html fullscreen className="pointer-events-none">
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-wide mb-6 leading-tight max-w-4xl drop-shadow-lg">
+        <h1 
+          className="font-display text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-wide mb-6 leading-tight max-w-4xl"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
+        >
           Whisper2Owner
         </h1>
-        <p className="text-white/80 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-3xl drop-shadow-md">
+        <p 
+          className="text-white/90 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-3xl"
+          style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.5)' }}
+        >
           Bridging International Brands with Local Canadian Consumers.
           We optimize revenue strategies by connecting you with the right customer segments.
         </p>
@@ -138,17 +145,22 @@ function Overlay() {
 function SceneContent() {
   return (
     <>
+      {/* Fog to blend sea edges into background */}
+      <fog attach="fog" args={[OCEAN_COLOR, 100, 800]} />
+      
       {/* Strong Lighting for visibility */}
-      <ambientLight intensity={3} />
+      <ambientLight intensity={2} />
       <directionalLight 
         position={[100, 200, 100]} 
-        intensity={5} 
+        intensity={3} 
         castShadow
       />
       <directionalLight 
         position={[-100, 100, -100]} 
-        intensity={2} 
+        intensity={1.5} 
       />
+      {/* Light from below to illuminate the sea */}
+      <pointLight position={[0, -50, 0]} intensity={2} color="#0066aa" />
       
       {/* Environment for realistic reflections */}
       <Environment preset="sunset" />
@@ -173,9 +185,9 @@ function SceneContent() {
 // Main OceanScene Component
 export default function OceanScene() {
   return (
-    <div className="h-screen w-full bg-black relative">
+    <div className="h-screen w-full relative" style={{ background: OCEAN_COLOR }}>
       <Canvas
-        camera={{ position: [0, 300, 400], fov: 60 }}
+        camera={{ position: [0, 100, 200], fov: 60 }}
         className="absolute top-0 left-0 w-full h-full"
         shadows
       >
@@ -183,14 +195,14 @@ export default function OceanScene() {
           <SceneContent />
         </Suspense>
         
-        {/* Dark blue gradient background for ocean sky */}
-        <color attach="background" args={['#0a1628']} />
+        {/* Dark ocean blue background - matches fog */}
+        <color attach="background" args={[OCEAN_COLOR]} />
       </Canvas>
       
       {/* Loading indicator */}
       <Loader
         containerStyles={{
-          background: '#0a1628',
+          background: OCEAN_COLOR,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
