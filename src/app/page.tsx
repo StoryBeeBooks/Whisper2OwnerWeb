@@ -11,7 +11,7 @@ export default function Page() {
     <main className="h-screen w-full bg-black relative">
       {/* The Canvas covers the entire screen and stays fixed */}
       <Canvas 
-        camera={{ position: [0, 5, 0], fov: 60 }} 
+        camera={{ position: [0, 15, 0], fov: 60 }} 
         className="absolute top-0 left-0 w-full h-full"
       >
         <Suspense fallback={null}>

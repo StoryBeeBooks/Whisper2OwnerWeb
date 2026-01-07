@@ -16,7 +16,7 @@ export default function Scene() {
   // Setup animations
   const { actions, mixer } = useAnimations(animations, scene);
   
-  // Play all animations on load
+  // Play all animations on load at 40% speed (slowed by 60%)
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
       // Play all available animations
@@ -24,14 +24,15 @@ export default function Scene() {
         if (action) {
           action.reset().play();
           action.setLoop(THREE.LoopRepeat, Infinity);
+          action.timeScale = 0.4; // 40% speed (60% slower)
         }
       });
     }
   }, [actions]);
 
-  // Initial setup: Position camera for top-down view
+  // Initial setup: Position camera for top-down view, more zoomed out
   useLayoutEffect(() => {
-    camera.position.set(0, 8, 0);
+    camera.position.set(0, 15, 0);
     camera.lookAt(0, 0, 0);
   }, [camera]);
 
@@ -61,8 +62,8 @@ export default function Scene() {
     // Zoom happens during the first 25% of scroll
     const zoomProgress = scroll.range(0, 0.25);
     
-    // Start at Y=8 (looking down at wave), End at Y=2 (close up)
-    const startY = 8;
+    // Start at Y=15 (more zoomed out), End at Y=2 (close up)
+    const startY = 15;
     const endY = 2;
     
     camera.position.y = THREE.MathUtils.lerp(startY, endY, zoomProgress);
