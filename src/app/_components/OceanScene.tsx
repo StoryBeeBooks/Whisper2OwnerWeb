@@ -37,7 +37,7 @@ function Ship() {
       const time = state.clock.elapsedTime;
       
       // Bob up and down using sine wave
-      shipRef.current.position.y = -10 + Math.sin(time * bobFrequency) * bobAmplitude;
+      shipRef.current.position.y = -5 + Math.sin(time * bobFrequency) * bobAmplitude;
       
       // Rock back and forth (rotation on Z axis)
       shipRef.current.rotation.z = Math.sin(time * rockFrequency) * rockAmplitude;
@@ -48,7 +48,7 @@ function Ship() {
   });
 
   return (
-    <group ref={shipRef} position={[0, -10, 0]}>
+    <group ref={shipRef} position={[0, -5, 0]}>
       <primitive 
         object={scene} 
         scale={responsiveScale}
@@ -57,11 +57,11 @@ function Ship() {
   );
 }
 
-// Text Overlay - positioned at top
+// Text Overlay - positioned lower
 function Overlay() {
   return (
     <Html fullscreen className="pointer-events-none">
-      <div className="absolute top-20 left-0 w-full text-center px-6 z-10">
+      <div className="absolute top-[35%] left-0 w-full text-center px-6 z-10 transform -translate-y-1/2">
         <h1 
           className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4 leading-tight"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
@@ -124,7 +124,7 @@ export default function OceanScene() {
   return (
     <main className="h-screen w-full relative bg-gradient-to-b from-white via-sky-200 to-[#001e36]">
       <Canvas
-        camera={{ position: [0, 8, 20], fov: 60 }}
+        camera={{ position: [0, 5, 35], fov: 45 }}
         className="absolute inset-0 z-0"
         shadows
         gl={{ alpha: true }}
