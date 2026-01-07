@@ -364,7 +364,7 @@ function GlobeContent() {
 // Exported component
 export default function GlobeScene() {
   return (
-    <section className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative bg-white overflow-hidden">
+    <section className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative overflow-hidden">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
