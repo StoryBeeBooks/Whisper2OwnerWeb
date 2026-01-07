@@ -1,44 +1,50 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-
-export const metadata: Metadata = {
-  title: 'International Opportunities | Whisper2Owner',
-  description: 'Connect international brands with Canadian consumers and explore export opportunities to England, Colombia, Argentina, and China.',
-};
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function InternationalOpportunitiesPage() {
+  const { t } = useLanguage();
+
   const markets = [
     {
-      country: 'Canada',
+      countryKey: 'international.canada',
       flag: '🇨🇦',
-      description: 'Entry point for international brands seeking North American market access',
-      type: 'Import'
+      descKey: 'international.canada.desc',
+      typeKey: 'international.import'
     },
     {
-      country: 'England',
+      countryKey: 'international.england',
       flag: '🇬🇧',
-      description: 'Export opportunities to the United Kingdom market',
-      type: 'Export'
+      descKey: 'international.england.desc',
+      typeKey: 'international.export'
     },
     {
-      country: 'Colombia',
+      countryKey: 'international.colombia',
       flag: '🇨🇴',
-      description: 'Growing Latin American market with strong consumer demand',
-      type: 'Export'
+      descKey: 'international.colombia.desc',
+      typeKey: 'international.export'
     },
     {
-      country: 'Argentina',
+      countryKey: 'international.argentina',
       flag: '🇦🇷',
-      description: 'Strategic gateway to South American markets',
-      type: 'Export'
+      descKey: 'international.argentina.desc',
+      typeKey: 'international.export'
     },
     {
-      country: 'China',
+      countryKey: 'international.china',
       flag: '🇨🇳',
-      description: 'Access to the world\'s largest consumer market',
-      type: 'Export'
+      descKey: 'international.china.desc',
+      typeKey: 'international.export'
     },
+  ];
+
+  const services = [
+    { titleKey: 'international.service.marketResearch', descKey: 'international.service.marketResearch.desc' },
+    { titleKey: 'international.service.partnerMatching', descKey: 'international.service.partnerMatching.desc' },
+    { titleKey: 'international.service.regulatory', descKey: 'international.service.regulatory.desc' },
+    { titleKey: 'international.service.logistics', descKey: 'international.service.logistics.desc' },
   ];
 
   return (
@@ -49,23 +55,22 @@ export default function InternationalOpportunitiesPage() {
         <div className="max-w-4xl mx-auto">
           <header className="mb-10 md:mb-16 text-center">
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-luxury-black font-light tracking-wide mb-4 md:mb-6">
-              International Opportunities
+              {t('international.title')}
             </h1>
             <p className="text-luxury-gray text-sm md:text-lg font-light max-w-2xl mx-auto">
-              We bridge international brands and organizations to source and sell in Canada, 
-              while also facilitating exports to key global markets.
+              {t('international.subtitle')}
             </p>
           </header>
 
           <section className="mb-10 md:mb-16">
             <h2 className="font-display text-lg md:text-2xl text-luxury-black font-medium tracking-wide mb-6 md:mb-8 text-center uppercase">
-              Markets We Serve
+              {t('international.marketsTitle')}
             </h2>
             
             <div className="space-y-3 md:space-y-4">
               {markets.map((market) => (
                 <div
-                  key={market.country}
+                  key={market.countryKey}
                   className="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury
                              hover:border-luxury-black hover:translate-x-1 transition-all duration-200"
                 >
@@ -73,19 +78,19 @@ export default function InternationalOpportunitiesPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-1">
                       <h3 className="font-display text-base md:text-xl text-luxury-black font-medium">
-                        {market.country}
+                        {t(market.countryKey)}
                       </h3>
                       <span className={`text-[10px] md:text-xs tracking-luxury uppercase px-2 py-0.5 rounded-luxury
-                        ${market.type === 'Import' 
+                        ${market.typeKey === 'international.import' 
                           ? 'bg-accent-sage/20 text-accent-sage' 
                           : 'bg-accent-blue/20 text-accent-blue'
                         }`}
                       >
-                        {market.type}
+                        {t(market.typeKey)}
                       </span>
                     </div>
                     <p className="text-luxury-gray text-xs md:text-sm font-light">
-                      {market.description}
+                      {t(market.descKey)}
                     </p>
                   </div>
                 </div>
@@ -95,37 +100,20 @@ export default function InternationalOpportunitiesPage() {
 
           <section className="mb-10 md:mb-16">
             <h2 className="font-display text-lg md:text-2xl text-luxury-black font-medium tracking-wide mb-6 md:mb-8 text-center uppercase">
-              Our Services
+              {t('international.servicesTitle')}
             </h2>
             
             <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
-              {[
-                {
-                  title: 'Market Entry Strategy',
-                  desc: 'Tailored plans for entering the Canadian market or expanding internationally'
-                },
-                {
-                  title: 'Distribution Partnerships',
-                  desc: 'Connect with established local networks and retail channels'
-                },
-                {
-                  title: 'Regulatory Compliance',
-                  desc: 'Navigate import/export regulations and certification requirements'
-                },
-                {
-                  title: 'Brand Localization',
-                  desc: 'Adapt your products and messaging for local consumer preferences'
-                },
-              ].map((service) => (
+              {services.map((service) => (
                 <div
-                  key={service.title}
+                  key={service.titleKey}
                   className="p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury"
                 >
                   <h3 className="font-display text-base md:text-lg text-luxury-black font-medium mb-1 md:mb-2">
-                    {service.title}
+                    {t(service.titleKey)}
                   </h3>
                   <p className="text-luxury-gray text-xs md:text-sm font-light">
-                    {service.desc}
+                    {t(service.descKey)}
                   </p>
                 </div>
               ))}
@@ -134,13 +122,13 @@ export default function InternationalOpportunitiesPage() {
 
           <section className="text-center">
             <p className="text-luxury-gray-light text-xs md:text-sm mb-4 md:mb-6">
-              Ready to expand your global footprint?
+              {t('international.readyToExpand')}
             </p>
             <a
               href="mailto:support@Whisper2Owner.com"
               className="btn-primary inline-block text-xs md:text-sm"
             >
-              Start the Conversation
+              {t('international.startConversation')}
             </a>
           </section>
         </div>

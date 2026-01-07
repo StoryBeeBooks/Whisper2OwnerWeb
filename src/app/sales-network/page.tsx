@@ -1,13 +1,24 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-
-export const metadata: Metadata = {
-  title: 'Sales Network | Whisper2Owner',
-  description: 'Discover our comprehensive local sales network connecting brands with Canadian consumers through storefronts, online marketplaces, and community partnerships.',
-};
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function SalesNetworkPage() {
+  const { t } = useLanguage();
+
+  const partners = [
+    { nameKey: 'salesNetwork.partner.localStorefronts', descKey: 'salesNetwork.partner.localStorefronts.desc' },
+    { nameKey: 'salesNetwork.partner.smallBusinesses', descKey: 'salesNetwork.partner.smallBusinesses.desc' },
+    { nameKey: 'salesNetwork.partner.boutiqueGyms', descKey: 'salesNetwork.partner.boutiqueGyms.desc' },
+    { nameKey: 'salesNetwork.partner.communityLeaders', descKey: 'salesNetwork.partner.communityLeaders.desc' },
+    { nameKey: 'salesNetwork.partner.supermarketChains', descKey: 'salesNetwork.partner.supermarketChains.desc' },
+    { nameKey: 'salesNetwork.partner.amazonStore', descKey: 'salesNetwork.partner.amazonStore.desc' },
+    { nameKey: 'salesNetwork.partner.shopifyStores', descKey: 'salesNetwork.partner.shopifyStores.desc' },
+    { nameKey: 'salesNetwork.partner.etsyEbay', descKey: 'salesNetwork.partner.etsyEbay.desc' },
+    { nameKey: 'salesNetwork.partner.groupon', descKey: 'salesNetwork.partner.groupon.desc' },
+  ];
+
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
@@ -16,41 +27,30 @@ export default function SalesNetworkPage() {
         <div className="max-w-4xl mx-auto">
           <header className="mb-10 md:mb-16 text-center">
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-luxury-black font-light tracking-wide mb-4 md:mb-6">
-              Sales Network
+              {t('salesNetwork.title')}
             </h1>
             <p className="text-luxury-gray text-sm md:text-lg font-light max-w-2xl mx-auto">
-              A curated ecosystem of local partners, storefronts, and digital channels 
-              designed to maximize your brand's reach in the Canadian market.
+              {t('salesNetwork.subtitle')}
             </p>
           </header>
 
           <section className="mb-10 md:mb-16">
             <h2 className="font-display text-lg md:text-2xl text-luxury-black font-medium tracking-wide mb-6 md:mb-8 text-center uppercase">
-              Our Partners
+              {t('salesNetwork.partnersTitle')}
             </h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {[
-                { name: 'Local Storefronts', desc: 'Boutique retail locations across Canada' },
-                { name: 'Small Businesses', desc: 'Independent retailers and specialty shops' },
-                { name: 'Boutique Gyms', desc: 'Fitness and wellness establishments' },
-                { name: 'Community Leaders', desc: 'Influencers and local advocates' },
-                { name: 'Supermarket Chains', desc: 'Major grocery and retail chains' },
-                { name: 'Amazon Store', desc: 'Canada\'s largest online marketplace' },
-                { name: 'Shopify Stores', desc: 'Direct-to-consumer e-commerce' },
-                { name: 'Etsy & eBay', desc: 'Specialty and marketplace selling' },
-                { name: 'Groupon', desc: 'Deal-based customer acquisition' },
-              ].map((partner) => (
+              {partners.map((partner) => (
                 <div
-                  key={partner.name}
+                  key={partner.nameKey}
                   className="p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury
                              hover:border-luxury-black hover:translate-x-1 transition-all duration-200"
                 >
                   <h3 className="font-display text-base md:text-lg text-luxury-black font-medium mb-1 md:mb-2">
-                    {partner.name}
+                    {t(partner.nameKey)}
                   </h3>
                   <p className="text-luxury-gray text-xs md:text-sm font-light">
-                    {partner.desc}
+                    {t(partner.descKey)}
                   </p>
                 </div>
               ))}
@@ -59,13 +59,13 @@ export default function SalesNetworkPage() {
 
           <section className="text-center">
             <p className="text-luxury-gray-light text-xs md:text-sm mb-4 md:mb-6">
-              Ready to expand your brand's presence in Canada?
+              {t('salesNetwork.cta')}
             </p>
             <a
               href="mailto:support@Whisper2Owner.com"
               className="btn-primary inline-block text-xs md:text-sm"
             >
-              Contact Us
+              {t('salesNetwork.contactUs')}
             </a>
           </section>
         </div>

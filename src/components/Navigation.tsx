@@ -4,22 +4,24 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface NavItem {
-  label: string;
+  labelKey: string;
   href: string;
 }
 
 const navItems: NavItem[] = [
-  { label: 'Main', href: '/' },
-  { label: 'Sales Network', href: '/sales-network' },
-  { label: 'Canada Funding', href: '/canada-funding' },
-  { label: 'Tender Opportunities', href: '/tender-opportunities' },
-  { label: 'International Opportunities', href: '/international-opportunities' },
+  { labelKey: 'nav.main', href: '/' },
+  { labelKey: 'nav.salesNetwork', href: '/sales-network' },
+  { labelKey: 'nav.canadaFunding', href: '/canada-funding' },
+  { labelKey: 'nav.tenderOpportunities', href: '/tender-opportunities' },
+  { labelKey: 'nav.internationalOpportunities', href: '/international-opportunities' },
 ];
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     if (isOpen) {
@@ -86,9 +88,30 @@ export function Navigation() {
                 <h2 className="font-display text-2xl font-medium tracking-wide text-luxury-black">
                   Whisper2Owner
                 </h2>
-                <p className="text-luxury-gray text-xs tracking-luxury uppercase mt-2">
-                  Navigation
-                </p>
+                {/* Language Toggle */}
+                <div className="flex items-center gap-2 mt-3">
+                  <button
+                    onClick={() => setLanguage('en')}
+                    className={`text-xs tracking-wide transition-colors duration-200 ${
+                      language === 'en' 
+                        ? 'text-luxury-black font-medium' 
+                        : 'text-luxury-gray hover:text-luxury-black'
+                    }`}
+                  >
+                    English
+                  </button>
+                  <span className="text-warm-taupe">|</span>
+                  <button
+                    onClick={() => setLanguage('zh')}
+                    className={`text-xs tracking-wide transition-colors duration-200 ${
+                      language === 'zh' 
+                        ? 'text-luxury-black font-medium' 
+                        : 'text-luxury-gray hover:text-luxury-black'
+                    }`}
+                  >
+                    中文
+                  </button>
+                </div>
               </div>
 
               {/* Nav Items */}
@@ -108,7 +131,7 @@ export function Navigation() {
                                  hover:pl-2 hover:text-luxury-charcoal
                                  transition-all duration-200"
                     >
-                      {item.label}
+                      {t(item.labelKey)}
                     </Link>
                   </motion.div>
                 ))}
@@ -117,10 +140,10 @@ export function Navigation() {
               {/* Footer info in menu */}
               <div className="absolute bottom-8 left-8 right-8">
                 <p className="text-luxury-gray-light text-xs tracking-wide">
-                  support@Whisper2Owner.com
+                  {t('nav.supportEmail')}
                 </p>
                 <p className="text-luxury-gray-light text-xs tracking-wide mt-1">
-                  2026 Whisper2Owner.com
+                  {t('nav.copyright')}
                 </p>
               </div>
             </motion.div>

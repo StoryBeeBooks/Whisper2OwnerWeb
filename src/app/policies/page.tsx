@@ -1,14 +1,13 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { PoliciesContent } from './_components/PoliciesContent';
-
-export const metadata: Metadata = {
-  title: 'Policies & Terms | Whisper2Owner',
-  description: 'Privacy policy, terms of use, and legal information for Whisper2Owner.',
-};
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function PoliciesPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
@@ -18,7 +17,7 @@ export default function PoliciesPage() {
           {/* Header */}
           <header className="mb-8 md:mb-12 text-center">
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-luxury-black font-light tracking-wide uppercase mb-2 md:mb-3">
-              Policies & Terms
+              {t('policies.title')}
             </h1>
             <p className="text-[10px] sm:text-xs tracking-luxury uppercase text-luxury-gray-light">
               Last Updated: January 3, 2026

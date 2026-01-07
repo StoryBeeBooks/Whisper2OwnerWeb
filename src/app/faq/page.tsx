@@ -1,34 +1,18 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-
-export const metadata: Metadata = {
-  title: 'FAQ | Whisper2Owner',
-  description: 'Frequently asked questions about Whisper2Owner services and partnerships.',
-};
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function FAQPage() {
+  const { t } = useLanguage();
+
   const faqs = [
-    {
-      question: 'What does Whisper2Owner do?',
-      answer: 'We bridge international brands with local Canadian consumers by managing a comprehensive sales network and facilitating market entry strategies.'
-    },
-    {
-      question: 'Which markets do you serve?',
-      answer: 'We help international brands enter the Canadian market and facilitate exports to England, Colombia, Argentina, and China.'
-    },
-    {
-      question: 'What types of businesses do you work with?',
-      answer: 'We work with manufacturers, brands, and organizations of all sizes looking to expand their presence in Canadian and international markets.'
-    },
-    {
-      question: 'What sales channels are available through your network?',
-      answer: 'Our network includes local storefronts, small businesses, boutique gyms, community leaders, supermarket chains, Amazon, Shopify, Etsy, eBay, Groupon, and more.'
-    },
-    {
-      question: 'How do I get started?',
-      answer: 'Contact us at support@Whisper2Owner.com to discuss your business needs and explore partnership opportunities.'
-    },
+    { questionKey: 'faq.q1', answerKey: 'faq.a1' },
+    { questionKey: 'faq.q2', answerKey: 'faq.a2' },
+    { questionKey: 'faq.q3', answerKey: 'faq.a3' },
+    { questionKey: 'faq.q4', answerKey: 'faq.a4' },
+    { questionKey: 'faq.q5', answerKey: 'faq.a5' },
   ];
 
   return (
@@ -39,10 +23,10 @@ export default function FAQPage() {
         <div className="max-w-3xl mx-auto">
           <header className="mb-10 md:mb-16 text-center">
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-luxury-black font-light tracking-wide mb-4 md:mb-6">
-              Frequently Asked Questions
+              {t('faq.title')}
             </h1>
             <p className="text-luxury-gray text-sm md:text-lg font-light">
-              Find answers to common questions about our services.
+              {t('faq.subtitle')}
             </p>
           </header>
 
@@ -53,10 +37,10 @@ export default function FAQPage() {
                 className="p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury"
               >
                 <h3 className="font-display text-base md:text-lg text-luxury-black font-medium mb-2 md:mb-3">
-                  {faq.question}
+                  {t(faq.questionKey)}
                 </h3>
                 <p className="text-luxury-gray text-xs md:text-sm font-light leading-relaxed">
-                  {faq.answer}
+                  {t(faq.answerKey)}
                 </p>
               </div>
             ))}
@@ -64,13 +48,13 @@ export default function FAQPage() {
 
           <section className="mt-10 md:mt-16 text-center">
             <p className="text-luxury-gray text-xs md:text-sm mb-4">
-              Don't see your question here?
+              {t('faq.moreQuestions')}
             </p>
             <a
               href="mailto:support@Whisper2Owner.com"
               className="btn-secondary inline-block text-xs md:text-sm"
             >
-              Contact Support
+              {t('faq.contactSupport')}
             </a>
           </section>
         </div>

@@ -2,19 +2,21 @@
 
 import { useState } from 'react';
 import { FileText, Shield, AlertTriangle, Accessibility, Cookie } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 type PolicyTab = 'terms' | 'privacy' | 'disclaimers' | 'accessibility' | 'cookies';
 
-const tabs: { id: PolicyTab; label: string; icon: React.ReactNode }[] = [
-  { id: 'terms', label: 'Terms of Use', icon: <FileText className="w-4 h-4" /> },
-  { id: 'privacy', label: 'Privacy Policy', icon: <Shield className="w-4 h-4" /> },
-  { id: 'disclaimers', label: 'Disclaimers', icon: <AlertTriangle className="w-4 h-4" /> },
-  { id: 'accessibility', label: 'Accessibility', icon: <Accessibility className="w-4 h-4" /> },
-  { id: 'cookies', label: 'Cookies Policy', icon: <Cookie className="w-4 h-4" /> },
+const tabs: { id: PolicyTab; labelKey: string; icon: React.ReactNode }[] = [
+  { id: 'terms', labelKey: 'policies.termsOfUse', icon: <FileText className="w-4 h-4" /> },
+  { id: 'privacy', labelKey: 'policies.privacyPolicy', icon: <Shield className="w-4 h-4" /> },
+  { id: 'disclaimers', labelKey: 'policies.disclaimers', icon: <AlertTriangle className="w-4 h-4" /> },
+  { id: 'accessibility', labelKey: 'policies.accessibility', icon: <Accessibility className="w-4 h-4" /> },
+  { id: 'cookies', labelKey: 'policies.cookiesPolicy', icon: <Cookie className="w-4 h-4" /> },
 ];
 
 export function PoliciesContent() {
   const [activeTab, setActiveTab] = useState<PolicyTab>('terms');
+  const { t } = useLanguage();
 
   return (
     <div>
@@ -37,7 +39,7 @@ export function PoliciesContent() {
             `}
           >
             {tab.icon}
-            <span className="hidden sm:inline">{tab.label}</span>
+            <span className="hidden sm:inline">{t(tab.labelKey)}</span>
           </button>
         ))}
       </nav>

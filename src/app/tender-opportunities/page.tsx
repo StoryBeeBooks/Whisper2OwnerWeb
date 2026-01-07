@@ -1,13 +1,12 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-
-export const metadata: Metadata = {
-  title: 'Tender Opportunities | Whisper2Owner',
-  description: 'Discover government and corporate tender opportunities for suppliers and service providers in the Canadian market.',
-};
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function TenderOpportunitiesPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-warm-white">
       <Navigation />
@@ -16,11 +15,10 @@ export default function TenderOpportunitiesPage() {
         <div className="max-w-4xl mx-auto">
           <header className="mb-10 md:mb-16 text-center">
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-luxury-black font-light tracking-wide mb-4 md:mb-6">
-              Tender Opportunities
+              {t('tenderOpportunities.title')}
             </h1>
             <p className="text-luxury-gray text-sm md:text-lg font-light max-w-2xl mx-auto">
-              Access curated government and corporate tender opportunities, helping you 
-              compete for contracts across Canada.
+              {t('tenderOpportunities.subtitle')}
             </p>
           </header>
 
@@ -30,25 +28,24 @@ export default function TenderOpportunitiesPage() {
                 <span className="text-xl md:text-2xl">📋</span>
               </div>
               <h2 className="font-display text-xl md:text-2xl text-luxury-black font-medium tracking-wide mb-3 md:mb-4">
-                Coming Soon
+                {t('tenderOpportunities.comingSoon')}
               </h2>
               <p className="text-luxury-gray text-sm md:text-base font-light max-w-lg mx-auto mb-6 md:mb-8">
-                We're building a comprehensive database of tender opportunities, procurement 
-                notices, and RFP alerts tailored to your business needs.
+                {t('tenderOpportunities.comingSoonDesc')}
               </p>
               <a
                 href="mailto:support@Whisper2Owner.com"
                 className="text-luxury-black text-xs md:text-sm tracking-wide uppercase border-b border-luxury-black
                            hover:text-luxury-gray hover:border-luxury-gray transition-colors duration-200"
               >
-                Get Notified When Available
+                {t('tenderOpportunities.getNotified')}
               </a>
             </div>
           </section>
 
           <section className="text-center">
             <p className="text-luxury-gray-light text-xs md:text-sm">
-              Have a tender opportunity to share?
+              {t('tenderOpportunities.shareTender')}
             </p>
             <a
               href="mailto:support@Whisper2Owner.com"

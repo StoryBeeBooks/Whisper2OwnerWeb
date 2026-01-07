@@ -13,6 +13,7 @@ import * as THREE from 'three';
 
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Configuration
 const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
@@ -61,7 +62,7 @@ function Ship() {
 }
 
 // Text Overlay - positioned lower, mobile optimized
-function Overlay() {
+function Overlay({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <Html fullscreen className="pointer-events-none">
       <div className="absolute top-[30%] sm:top-[35%] left-0 w-full text-center px-4 sm:px-6 z-10 transform -translate-y-1/2">
@@ -69,19 +70,13 @@ function Overlay() {
           className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-3 sm:mb-4 leading-tight"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
         >
-          Whisper2Owner
+          {title}
         </h1>
         <p 
           className="text-white/90 text-[10px] sm:text-xs md:text-sm tracking-wider sm:tracking-luxury uppercase font-light leading-relaxed max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-4 sm:mb-6"
           style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.5)' }}
         >
-          Bridging International Brands with Local Canadian Consumers
-        </p>
-        <p 
-          className="text-white/70 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-xs sm:max-w-md md:max-w-xl mx-auto hidden sm:block"
-          style={{ textShadow: '0 2px 10px rgba(0,0,0,0.6)' }}
-        >
-          We optimize revenue strategies by connecting you with the right customer segments.
+          {subtitle}
         </p>
       </div>
     </Html>
@@ -89,7 +84,7 @@ function Overlay() {
 }
 
 // Main Scene Content
-function SceneContent() {
+function SceneContent({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <>
       {/* Strong Lighting */}
@@ -122,13 +117,15 @@ function SceneContent() {
       />
       
       {/* Text Overlay */}
-      <Overlay />
+      <Overlay title={title} subtitle={subtitle} />
     </>
   );
 }
 
 // Main OceanScene Component
 export default function OceanScene() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* Navigation hamburger menu */}
@@ -142,7 +139,7 @@ export default function OceanScene() {
           gl={{ alpha: true }}
         >
           <Suspense fallback={null}>
-            <SceneContent />
+            <SceneContent title={t('home.title')} subtitle={t('home.subtitle')} />
           </Suspense>
         </Canvas>
         
