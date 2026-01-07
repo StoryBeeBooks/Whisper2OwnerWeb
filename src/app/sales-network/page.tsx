@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { Globe, Store, Handshake, ShoppingCart, Building2, Box } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
@@ -180,14 +179,11 @@ export default function SalesNetworkPage() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10 items-center">
                 <div className="lg:col-span-1 flex justify-center">
                   <a href="https://www.nridl.org" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="bg-white rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <Image
-                        src="https://www.nridl.org/img/nridl.png"
-                        alt="NRIDL - Digital Transformation Consulting"
-                        width={200}
-                        height={80}
-                        className="w-auto h-16 md:h-20 object-contain"
-                      />
+                    <div className="bg-white rounded-lg px-6 py-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-100">
+                      <div className="text-center">
+                        <span className="font-display text-2xl md:text-3xl tracking-[0.3em] text-slate-800 font-light">NRIDL</span>
+                        <div className="text-[9px] md:text-[10px] text-slate-500 tracking-wider mt-1 font-light uppercase">Digital Transformation</div>
+                      </div>
                     </div>
                   </a>
                 </div>
@@ -229,14 +225,11 @@ export default function SalesNetworkPage() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10 items-center">
                 <div className="lg:col-span-1 flex justify-center lg:order-last">
                   <a href="https://www.wtheory.com" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="bg-white rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <Image
-                        src="https://www.wtheory.com/img/logo.png"
-                        alt="WTheory - Technology Implementation Partner"
-                        width={200}
-                        height={80}
-                        className="w-auto h-16 md:h-20 object-contain"
-                      />
+                    <div className="bg-white rounded-lg px-6 py-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-100">
+                      <div className="text-center">
+                        <span className="font-display text-2xl md:text-3xl tracking-wide text-slate-800 font-light">WTheory</span>
+                        <div className="text-[9px] md:text-[10px] text-slate-500 tracking-wider mt-1 font-light uppercase">Technology Solutions</div>
+                      </div>
                     </div>
                   </a>
                 </div>
