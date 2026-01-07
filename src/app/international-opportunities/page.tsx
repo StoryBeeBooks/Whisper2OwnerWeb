@@ -45,37 +45,37 @@ export default function InternationalOpportunitiesPage() {
     <div className="min-h-screen bg-warm-white">
       <Navigation />
       
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-20 md:pt-24 pb-12 md:pb-16 px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
-          <header className="mb-16 text-center">
-            <h1 className="font-display text-4xl md:text-5xl text-luxury-black font-light tracking-wide mb-6">
+          <header className="mb-10 md:mb-16 text-center">
+            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-luxury-black font-light tracking-wide mb-4 md:mb-6">
               International Opportunities
             </h1>
-            <p className="text-luxury-gray text-lg font-light max-w-2xl mx-auto">
+            <p className="text-luxury-gray text-sm md:text-lg font-light max-w-2xl mx-auto">
               We bridge international brands and organizations to source and sell in Canada, 
               while also facilitating exports to key global markets.
             </p>
           </header>
 
-          <section className="mb-16">
-            <h2 className="font-display text-2xl text-luxury-black font-medium tracking-wide mb-8 text-center uppercase">
+          <section className="mb-10 md:mb-16">
+            <h2 className="font-display text-lg md:text-2xl text-luxury-black font-medium tracking-wide mb-6 md:mb-8 text-center uppercase">
               Markets We Serve
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {markets.map((market) => (
                 <div
                   key={market.country}
-                  className="flex items-center gap-6 p-6 bg-warm-card border border-warm-sand rounded-luxury
+                  className="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury
                              hover:border-luxury-black hover:translate-x-1 transition-all duration-200"
                 >
-                  <span className="text-4xl">{market.flag}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1">
-                      <h3 className="font-display text-xl text-luxury-black font-medium">
+                  <span className="text-2xl md:text-4xl">{market.flag}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-1">
+                      <h3 className="font-display text-base md:text-xl text-luxury-black font-medium">
                         {market.country}
                       </h3>
-                      <span className={`text-xs tracking-luxury uppercase px-2 py-0.5 rounded-luxury
+                      <span className={`text-[10px] md:text-xs tracking-luxury uppercase px-2 py-0.5 rounded-luxury
                         ${market.type === 'Import' 
                           ? 'bg-accent-sage/20 text-accent-sage' 
                           : 'bg-accent-blue/20 text-accent-blue'
@@ -84,7 +84,7 @@ export default function InternationalOpportunitiesPage() {
                         {market.type}
                       </span>
                     </div>
-                    <p className="text-luxury-gray text-sm font-light">
+                    <p className="text-luxury-gray text-xs md:text-sm font-light">
                       {market.description}
                     </p>
                   </div>
@@ -93,12 +93,12 @@ export default function InternationalOpportunitiesPage() {
             </div>
           </section>
 
-          <section className="mb-16">
-            <h2 className="font-display text-2xl text-luxury-black font-medium tracking-wide mb-8 text-center uppercase">
+          <section className="mb-10 md:mb-16">
+            <h2 className="font-display text-lg md:text-2xl text-luxury-black font-medium tracking-wide mb-6 md:mb-8 text-center uppercase">
               Our Services
             </h2>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
               {[
                 {
                   title: 'Market Entry Strategy',
@@ -119,12 +119,12 @@ export default function InternationalOpportunitiesPage() {
               ].map((service) => (
                 <div
                   key={service.title}
-                  className="p-6 bg-warm-card border border-warm-sand rounded-luxury"
+                  className="p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury"
                 >
-                  <h3 className="font-display text-lg text-luxury-black font-medium mb-2">
+                  <h3 className="font-display text-base md:text-lg text-luxury-black font-medium mb-1 md:mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-luxury-gray text-sm font-light">
+                  <p className="text-luxury-gray text-xs md:text-sm font-light">
                     {service.desc}
                   </p>
                 </div>
@@ -133,12 +133,12 @@ export default function InternationalOpportunitiesPage() {
           </section>
 
           <section className="text-center">
-            <p className="text-luxury-gray-light text-sm mb-6">
+            <p className="text-luxury-gray-light text-xs md:text-sm mb-4 md:mb-6">
               Ready to expand your global footprint?
             </p>
             <a
               href="mailto:support@Whisper2Owner.com"
-              className="btn-primary inline-block"
+              className="btn-primary inline-block text-xs md:text-sm"
             >
               Start the Conversation
             </a>

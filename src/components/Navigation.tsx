@@ -37,14 +37,14 @@ export function Navigation() {
       {/* Hamburger Button - Fixed Position */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-6 right-6 z-[100] w-12 h-12 flex items-center justify-center
+        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center
                    bg-warm-white/90 backdrop-blur-sm border border-warm-sand rounded-luxury
                    shadow-luxury-default hover:shadow-luxury-elevated
                    transition-all duration-300 hover:-translate-y-0.5
                    group"
         aria-label="Open navigation menu"
       >
-        <Menu className="w-5 h-5 text-luxury-black group-hover:scale-105 transition-transform" />
+        <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-luxury-black group-hover:scale-105 transition-transform" />
       </button>
 
       <AnimatePresence>

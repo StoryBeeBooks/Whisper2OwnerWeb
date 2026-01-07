@@ -60,25 +60,25 @@ function Ship() {
   );
 }
 
-// Text Overlay - positioned lower
+// Text Overlay - positioned lower, mobile optimized
 function Overlay() {
   return (
     <Html fullscreen className="pointer-events-none">
-      <div className="absolute top-[35%] left-0 w-full text-center px-6 z-10 transform -translate-y-1/2">
+      <div className="absolute top-[30%] sm:top-[35%] left-0 w-full text-center px-4 sm:px-6 z-10 transform -translate-y-1/2">
         <h1 
-          className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4 leading-tight"
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-3 sm:mb-4 leading-tight"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
         >
           Whisper2Owner
         </h1>
         <p 
-          className="text-white/90 text-xs md:text-sm tracking-luxury uppercase font-light leading-relaxed max-w-2xl mx-auto mb-6"
+          className="text-white/90 text-[10px] sm:text-xs md:text-sm tracking-wider sm:tracking-luxury uppercase font-light leading-relaxed max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-4 sm:mb-6"
           style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.5)' }}
         >
           Bridging International Brands with Local Canadian Consumers
         </p>
         <p 
-          className="text-white/70 text-sm md:text-base font-light leading-relaxed max-w-xl mx-auto"
+          className="text-white/70 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-xs sm:max-w-md md:max-w-xl mx-auto hidden sm:block"
           style={{ textShadow: '0 2px 10px rgba(0,0,0,0.6)' }}
         >
           We optimize revenue strategies by connecting you with the right customer segments.

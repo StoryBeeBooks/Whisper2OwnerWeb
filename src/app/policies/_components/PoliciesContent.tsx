@@ -18,15 +18,18 @@ export function PoliciesContent() {
 
   return (
     <div>
-      {/* Tab Navigation */}
-      <nav className="flex flex-wrap justify-center gap-2 mb-12 border-b border-warm-sand pb-6">
+      {/* Tab Navigation - Icons only on mobile, full labels on md+ */}
+      <nav className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-8 md:mb-12 border-b border-warm-sand pb-4 md:pb-6">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`
-              flex items-center gap-2 px-4 py-2 text-xs tracking-wide uppercase
+              flex items-center justify-center gap-1 sm:gap-2 
+              px-2 sm:px-3 md:px-4 py-2 
+              text-[10px] sm:text-xs tracking-wide uppercase
               border border-warm-taupe rounded-sm transition-all duration-200
+              min-w-[44px] sm:min-w-0
               ${activeTab === tab.id 
                 ? 'bg-luxury-black text-white border-luxury-black' 
                 : 'bg-transparent text-luxury-gray hover:bg-luxury-black hover:text-white hover:border-luxury-black'
@@ -34,13 +37,13 @@ export function PoliciesContent() {
             `}
           >
             {tab.icon}
-            <span>{tab.label}</span>
+            <span className="hidden sm:inline">{tab.label}</span>
           </button>
         ))}
       </nav>
 
       {/* Tab Content */}
-      <div className="bg-warm-white border border-warm-sand rounded-sm p-8 md:p-12">
+      <div className="bg-warm-white border border-warm-sand rounded-sm p-4 sm:p-6 md:p-12">
         {activeTab === 'terms' && <TermsOfUse />}
         {activeTab === 'privacy' && <PrivacyPolicy />}
         {activeTab === 'disclaimers' && <Disclaimers />}
