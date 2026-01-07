@@ -1,63 +1,34 @@
 'use client';
 
-import { useRef, useEffect, Suspense } from 'react';
+import { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { 
   useGLTF, 
-  useAnimations, 
   Environment, 
-  ScrollControls, 
-  useScroll,
   Html,
   Loader,
   OrbitControls 
 } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Configuration - adjust these as needed
-const SEA_URL = 'https://assets.k12path.com/whisper2owner/sea.glb';
+// Configuration
 const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
-const SEA_SCALE = 500;  // Much larger to surround the ship
-const SHIP_SCALE = 50;  // Ship scale
-const ANIMATION_SPEED = 0.4; // 40% speed (60% slower)
-const OCEAN_COLOR = '#001e36'; // Dark ocean blue for background and fog
+const SHIP_SCALE = 50;
+const OCEAN_COLOR = '#001e36'; // Deep navy blue - matches gradient bottom
 
-// Animated Sea Component
-function Sea() {
-  const { scene, animations } = useGLTF(SEA_URL);
-  const { actions, mixer } = useAnimations(animations, scene);
-
-  // Debug: log animation names
-  useEffect(() => {
-    console.log('Sea animations:', animations.map(a => a.name));
-  }, [animations]);
-
-  // Play all animations on mount
-  useEffect(() => {
-    if (actions && Object.keys(actions).length > 0) {
-      Object.values(actions).forEach((action) => {
-        if (action) {
-          action.reset().play();
-          action.setLoop(THREE.LoopRepeat, Infinity);
-          action.timeScale = ANIMATION_SPEED;
-        }
-      });
-    }
-  }, [actions]);
-
-  // Update mixer every frame
-  useFrame((state, delta) => {
-    if (mixer) {
-      mixer.update(delta);
-    }
-  });
-
+// Flat Sea Surface Plane
+function SeaPlane() {
   return (
-    <primitive 
-      object={scene} 
-      position={[0, -10, 0]}
-      scale={SEA_SCALE}
-    />
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} receiveShadow>
+      <planeGeometry args={[1000, 1000]} />
+      <meshStandardMaterial 
+        color={OCEAN_COLOR}
+        transparent
+        opacity={0.85}
+        roughness={0.3}
+        metalness={0.1}
+      />
+    </mesh>
   );
 }
 
@@ -67,10 +38,10 @@ function Ship() {
   const shipRef = useRef<THREE.Group>(null);
 
   // Floating animation parameters
-  const bobAmplitude = 2; // How much the ship bobs up/down
-  const bobFrequency = 0.8;  // Speed of bobbing
-  const rockAmplitude = 0.03; // How much the ship rocks side to side (radians)
-  const rockFrequency = 0.5;  // Speed of rocking
+  const bobAmplitude = 2;
+  const bobFrequency = 0.8;
+  const rockAmplitude = 0.03;
+  const rockFrequency = 0.5;
 
   useFrame((state) => {
     if (shipRef.current) {
@@ -82,7 +53,7 @@ function Ship() {
       // Rock back and forth (rotation on Z axis)
       shipRef.current.rotation.z = Math.sin(time * rockFrequency) * rockAmplitude;
       
-      // Slight pitch forward/backward (rotation on X axis) for more realism
+      // Slight pitch forward/backward (rotation on X axis)
       shipRef.current.rotation.x = Math.sin(time * rockFrequency * 0.7) * (rockAmplitude * 0.5);
     }
   });
@@ -97,28 +68,7 @@ function Ship() {
   );
 }
 
-// Camera Controller for scroll-based zoom
-function CameraController() {
-  const scroll = useScroll();
-
-  useFrame(({ camera }) => {
-    const zoomProgress = scroll.range(0, 0.25);
-    
-    // Start zoomed out, zoom in as user scrolls
-    const startY = 12;
-    const endY = 4;
-    const startZ = 15;
-    const endZ = 5;
-    
-    camera.position.y = THREE.MathUtils.lerp(startY, endY, zoomProgress);
-    camera.position.z = THREE.MathUtils.lerp(startZ, endZ, zoomProgress);
-    camera.lookAt(0, 0, 0);
-  });
-
-  return null;
-}
-
-// Text Overlay with better contrast
+// Text Overlay
 function Overlay() {
   return (
     <Html fullscreen className="pointer-events-none">
@@ -145,31 +95,31 @@ function Overlay() {
 function SceneContent() {
   return (
     <>
-      {/* Fog to blend sea edges into background */}
-      <fog attach="fog" args={[OCEAN_COLOR, 100, 800]} />
+      {/* Fog to blend plane edges - matches gradient bottom */}
+      <fog attach="fog" args={[OCEAN_COLOR, 5, 40]} />
       
-      {/* Strong Lighting for visibility */}
-      <ambientLight intensity={2} />
+      {/* Lighting */}
+      <ambientLight intensity={1.5} />
       <directionalLight 
-        position={[100, 200, 100]} 
-        intensity={3} 
+        position={[10, 20, 10]} 
+        intensity={2} 
         castShadow
       />
       <directionalLight 
-        position={[-100, 100, -100]} 
-        intensity={1.5} 
+        position={[-10, 10, -10]} 
+        intensity={1} 
       />
-      {/* Light from below to illuminate the sea */}
-      <pointLight position={[0, -50, 0]} intensity={2} color="#0066aa" />
       
       {/* Environment for realistic reflections */}
       <Environment preset="sunset" />
       
-      {/* Sea and Ship */}
-      <Sea />
+      {/* Flat Sea Plane */}
+      <SeaPlane />
+      
+      {/* Ship */}
       <Ship />
       
-      {/* OrbitControls for debugging - allows mouse to rotate/zoom */}
+      {/* OrbitControls for debugging */}
       <OrbitControls 
         enableZoom={true}
         enablePan={true}
@@ -185,24 +135,22 @@ function SceneContent() {
 // Main OceanScene Component
 export default function OceanScene() {
   return (
-    <div className="h-screen w-full relative" style={{ background: OCEAN_COLOR }}>
+    <main className="h-screen w-full relative bg-gradient-to-b from-white via-sky-200 to-[#001e36]">
       <Canvas
-        camera={{ position: [0, 100, 200], fov: 60 }}
-        className="absolute top-0 left-0 w-full h-full"
+        camera={{ position: [0, 8, 20], fov: 60 }}
+        className="absolute inset-0 z-0"
         shadows
+        gl={{ alpha: true }}
       >
         <Suspense fallback={null}>
           <SceneContent />
         </Suspense>
-        
-        {/* Dark ocean blue background - matches fog */}
-        <color attach="background" args={[OCEAN_COLOR]} />
       </Canvas>
       
       {/* Loading indicator */}
       <Loader
         containerStyles={{
-          background: OCEAN_COLOR,
+          background: 'linear-gradient(to bottom, white, #7dd3fc, #001e36)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -217,16 +165,15 @@ export default function OceanScene() {
           height: '3px',
         }}
         dataStyles={{
-          color: '#87ceeb',
+          color: '#001e36',
           fontFamily: 'Josefin Sans, sans-serif',
           fontSize: '12px',
           letterSpacing: '0.15em',
         }}
       />
-    </div>
+    </main>
   );
 }
 
-// Preload models
-useGLTF.preload(SEA_URL);
+// Preload ship model only
 useGLTF.preload(SHIP_URL);
