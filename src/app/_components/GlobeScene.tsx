@@ -126,109 +126,121 @@ function FlightPath({ from, to, color, delay }: {
 
 // City marker
 function CityMarker({ lat, lng, name }: { lat: number; lng: number; name: string }) {
-  const position = useMemo(() => latLngToVector3(lat, lng, 2.02), [lat, lng]);
+  const position = useMemo(() => latLngToVector3(lat, lng, 2.025), [lat, lng]);
   
   return (
     <group position={position}>
       <mesh>
-        <sphereGeometry args={[0.025, 16, 16]} />
+        <sphereGeometry args={[0.03, 16, 16]} />
         <meshBasicMaterial color="#ffffff" />
       </mesh>
     </group>
   );
 }
 
-// Continent dot coordinates (simplified world map as lat/lng points)
-const continentDots: { lat: number; lng: number }[] = [
-  // North America
-  { lat: 71, lng: -156 }, { lat: 70, lng: -145 }, { lat: 68, lng: -135 }, { lat: 65, lng: -168 },
-  { lat: 64, lng: -150 }, { lat: 62, lng: -140 }, { lat: 60, lng: -165 }, { lat: 60, lng: -130 },
-  { lat: 58, lng: -155 }, { lat: 55, lng: -130 }, { lat: 55, lng: -120 }, { lat: 52, lng: -125 },
-  { lat: 50, lng: -120 }, { lat: 49, lng: -125 }, { lat: 48, lng: -90 }, { lat: 47, lng: -70 },
-  { lat: 45, lng: -75 }, { lat: 45, lng: -85 }, { lat: 45, lng: -95 }, { lat: 45, lng: -110 },
-  { lat: 43, lng: -80 }, { lat: 42, lng: -73 }, { lat: 42, lng: -88 }, { lat: 40, lng: -75 },
-  { lat: 40, lng: -100 }, { lat: 40, lng: -120 }, { lat: 38, lng: -77 }, { lat: 37, lng: -122 },
-  { lat: 35, lng: -80 }, { lat: 35, lng: -90 }, { lat: 35, lng: -105 }, { lat: 35, lng: -118 },
-  { lat: 33, lng: -85 }, { lat: 33, lng: -112 }, { lat: 30, lng: -90 }, { lat: 30, lng: -97 },
-  { lat: 29, lng: -95 }, { lat: 26, lng: -80 }, { lat: 25, lng: -100 }, { lat: 32, lng: -117 },
-  // Mexico & Central America
-  { lat: 23, lng: -102 }, { lat: 20, lng: -99 }, { lat: 19, lng: -96 }, { lat: 17, lng: -92 },
-  { lat: 15, lng: -90 }, { lat: 13, lng: -87 }, { lat: 12, lng: -85 }, { lat: 10, lng: -84 },
-  { lat: 9, lng: -80 }, { lat: 8, lng: -77 },
+// Generate dense continent dots programmatically
+function generateContinentDots(): { lat: number; lng: number }[] {
+  const dots: { lat: number; lng: number }[] = [];
+  
+  // Helper to add dots in a region with density
+  const addRegion = (latMin: number, latMax: number, lngMin: number, lngMax: number, density: number = 3) => {
+    for (let lat = latMin; lat <= latMax; lat += density) {
+      for (let lng = lngMin; lng <= lngMax; lng += density) {
+        // Add some randomness for natural look
+        const jitterLat = (Math.random() - 0.5) * 1.5;
+        const jitterLng = (Math.random() - 0.5) * 1.5;
+        dots.push({ lat: lat + jitterLat, lng: lng + jitterLng });
+      }
+    }
+  };
+  
+  // North America - dense coverage
+  addRegion(25, 50, -130, -65, 3);  // USA
+  addRegion(50, 72, -140, -55, 4);  // Canada
+  addRegion(60, 72, -170, -140, 5); // Alaska
+  addRegion(15, 25, -105, -85, 3);  // Mexico
+  addRegion(8, 15, -92, -77, 4);    // Central America
+  
   // South America
-  { lat: 10, lng: -67 }, { lat: 7, lng: -73 }, { lat: 5, lng: -75 }, { lat: 4, lng: -70 },
-  { lat: 0, lng: -78 }, { lat: -2, lng: -80 }, { lat: -5, lng: -75 }, { lat: -5, lng: -60 },
-  { lat: -8, lng: -35 }, { lat: -10, lng: -50 }, { lat: -10, lng: -67 }, { lat: -12, lng: -77 },
-  { lat: -15, lng: -70 }, { lat: -15, lng: -47 }, { lat: -18, lng: -65 }, { lat: -20, lng: -44 },
-  { lat: -23, lng: -43 }, { lat: -23, lng: -70 }, { lat: -25, lng: -57 }, { lat: -27, lng: -65 },
-  { lat: -30, lng: -70 }, { lat: -33, lng: -71 }, { lat: -35, lng: -58 }, { lat: -38, lng: -72 },
-  { lat: -40, lng: -63 }, { lat: -42, lng: -73 }, { lat: -45, lng: -70 }, { lat: -50, lng: -72 },
-  { lat: -53, lng: -68 }, { lat: -55, lng: -67 },
+  addRegion(-5, 12, -80, -60, 3);   // Northern SA
+  addRegion(-25, -5, -75, -35, 3);  // Brazil/Central
+  addRegion(-40, -25, -72, -55, 4); // Argentina/Chile
+  addRegion(-55, -40, -75, -65, 5); // Patagonia
+  
   // Europe
-  { lat: 70, lng: 25 }, { lat: 68, lng: 18 }, { lat: 65, lng: 12 }, { lat: 64, lng: -20 },
-  { lat: 62, lng: 6 }, { lat: 60, lng: 10 }, { lat: 60, lng: 25 }, { lat: 58, lng: -4 },
-  { lat: 56, lng: 10 }, { lat: 55, lng: -3 }, { lat: 54, lng: 10 }, { lat: 53, lng: 0 },
-  { lat: 52, lng: 5 }, { lat: 52, lng: 13 }, { lat: 52, lng: 21 }, { lat: 50, lng: 14 },
-  { lat: 50, lng: 2 }, { lat: 49, lng: 2 }, { lat: 48, lng: 16 }, { lat: 48, lng: 11 },
-  { lat: 47, lng: 8 }, { lat: 46, lng: 14 }, { lat: 45, lng: 9 }, { lat: 44, lng: 12 },
-  { lat: 43, lng: 5 }, { lat: 42, lng: 3 }, { lat: 42, lng: 12 }, { lat: 41, lng: -4 },
-  { lat: 40, lng: -8 }, { lat: 40, lng: 23 }, { lat: 38, lng: -9 }, { lat: 38, lng: 23 },
-  { lat: 37, lng: -6 }, { lat: 36, lng: -5 }, { lat: 35, lng: 25 },
+  addRegion(36, 45, -10, 30, 2.5);  // Southern Europe
+  addRegion(45, 55, -5, 25, 2.5);   // Central Europe
+  addRegion(55, 62, -5, 30, 3);     // Northern Europe
+  addRegion(62, 72, 5, 30, 4);      // Scandinavia
+  addRegion(50, 60, 25, 45, 3);     // Eastern Europe
+  
+  // British Isles
+  addRegion(50, 59, -10, 2, 2);
+  
+  // Iceland
+  addRegion(63, 66, -24, -13, 3);
+  
   // Africa
-  { lat: 35, lng: -5 }, { lat: 34, lng: 10 }, { lat: 32, lng: 0 }, { lat: 30, lng: 31 },
-  { lat: 27, lng: -13 }, { lat: 25, lng: 33 }, { lat: 22, lng: -17 }, { lat: 20, lng: 30 },
-  { lat: 15, lng: -17 }, { lat: 15, lng: 32 }, { lat: 12, lng: -15 }, { lat: 10, lng: 40 },
-  { lat: 8, lng: -12 }, { lat: 5, lng: -5 }, { lat: 5, lng: 10 }, { lat: 5, lng: 38 },
-  { lat: 0, lng: 10 }, { lat: 0, lng: 35 }, { lat: -5, lng: 12 }, { lat: -5, lng: 40 },
-  { lat: -10, lng: 15 }, { lat: -10, lng: 35 }, { lat: -15, lng: 15 }, { lat: -15, lng: 35 },
-  { lat: -20, lng: 18 }, { lat: -20, lng: 45 }, { lat: -22, lng: 15 }, { lat: -25, lng: 30 },
-  { lat: -28, lng: 25 }, { lat: -30, lng: 27 }, { lat: -33, lng: 18 }, { lat: -34, lng: 25 },
-  // Asia
-  { lat: 70, lng: 70 }, { lat: 68, lng: 90 }, { lat: 68, lng: 120 }, { lat: 65, lng: 50 },
-  { lat: 65, lng: 90 }, { lat: 65, lng: 140 }, { lat: 62, lng: 75 }, { lat: 60, lng: 60 },
-  { lat: 60, lng: 100 }, { lat: 60, lng: 130 }, { lat: 58, lng: 160 }, { lat: 55, lng: 40 },
-  { lat: 55, lng: 85 }, { lat: 55, lng: 130 }, { lat: 52, lng: 105 }, { lat: 50, lng: 80 },
-  { lat: 50, lng: 127 }, { lat: 48, lng: 135 }, { lat: 45, lng: 40 }, { lat: 45, lng: 90 },
-  { lat: 43, lng: 130 }, { lat: 40, lng: 45 }, { lat: 40, lng: 70 }, { lat: 40, lng: 116 },
-  { lat: 38, lng: 127 }, { lat: 37, lng: 140 }, { lat: 35, lng: 52 }, { lat: 35, lng: 105 },
-  { lat: 35, lng: 139 }, { lat: 32, lng: 75 }, { lat: 30, lng: 120 }, { lat: 28, lng: 77 },
-  { lat: 25, lng: 85 }, { lat: 25, lng: 121 }, { lat: 23, lng: 90 }, { lat: 22, lng: 114 },
-  { lat: 20, lng: 79 }, { lat: 18, lng: 100 }, { lat: 15, lng: 75 }, { lat: 15, lng: 100 },
-  { lat: 13, lng: 80 }, { lat: 12, lng: 105 }, { lat: 10, lng: 77 }, { lat: 8, lng: 80 },
-  { lat: 5, lng: 100 }, { lat: 3, lng: 102 }, { lat: 0, lng: 110 }, { lat: -6, lng: 107 },
-  { lat: -8, lng: 115 }, { lat: -5, lng: 120 }, { lat: -2, lng: 140 },
+  addRegion(25, 37, -15, 35, 4);    // North Africa
+  addRegion(10, 25, -20, 40, 4);    // Sahel
+  addRegion(-5, 10, -15, 45, 4);    // Central Africa
+  addRegion(-20, -5, 10, 45, 4);    // Southern Central
+  addRegion(-35, -20, 15, 35, 4);   // South Africa
+  
+  // Middle East
+  addRegion(28, 40, 35, 55, 4);
+  addRegion(12, 28, 40, 55, 5);     // Arabian Peninsula
+  
+  // Russia/Northern Asia
+  addRegion(50, 75, 40, 180, 6);
+  addRegion(50, 65, 40, 60, 4);
+  
+  // Central Asia
+  addRegion(35, 50, 50, 90, 5);
+  
+  // South Asia (India, etc)
+  addRegion(8, 35, 68, 95, 3);
+  
+  // East Asia
+  addRegion(20, 45, 100, 125, 3);   // China
+  addRegion(33, 45, 125, 145, 3);   // Japan/Korea
+  
+  // Southeast Asia
+  addRegion(-10, 20, 95, 120, 3);
+  addRegion(-8, 5, 95, 140, 4);     // Indonesia
+  
   // Australia
-  { lat: -12, lng: 130 }, { lat: -15, lng: 125 }, { lat: -15, lng: 145 }, { lat: -18, lng: 122 },
-  { lat: -20, lng: 118 }, { lat: -20, lng: 140 }, { lat: -20, lng: 148 }, { lat: -23, lng: 135 },
-  { lat: -25, lng: 115 }, { lat: -25, lng: 152 }, { lat: -28, lng: 114 }, { lat: -28, lng: 153 },
-  { lat: -30, lng: 130 }, { lat: -32, lng: 116 }, { lat: -32, lng: 152 }, { lat: -34, lng: 138 },
-  { lat: -35, lng: 117 }, { lat: -35, lng: 150 }, { lat: -37, lng: 145 }, { lat: -38, lng: 145 },
-  { lat: -42, lng: 147 }, { lat: -43, lng: 147 },
+  addRegion(-40, -12, 112, 155, 4);
+  
   // New Zealand
-  { lat: -37, lng: 175 }, { lat: -40, lng: 175 }, { lat: -42, lng: 173 }, { lat: -45, lng: 170 },
-  // Russia Far East
-  { lat: 65, lng: 170 }, { lat: 62, lng: 165 }, { lat: 55, lng: 160 }, { lat: 50, lng: 155 },
-  { lat: 48, lng: 142 }, { lat: 45, lng: 145 },
-];
+  addRegion(-47, -34, 166, 178, 3);
+  
+  // Greenland
+  addRegion(60, 83, -55, -20, 5);
+  
+  return dots;
+}
 
-// Flashing dot component
+const continentDots = generateContinentDots();
+
+// Flashing dot component - smaller size
 function ContinentDot({ lat, lng, delay }: { lat: number; lng: number; delay: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const position = useMemo(() => latLngToVector3(lat, lng, 2.01), [lat, lng]);
+  const position = useMemo(() => latLngToVector3(lat, lng, 2.008), [lat, lng]);
   
   useFrame((state) => {
     if (meshRef.current) {
       const material = meshRef.current.material as THREE.MeshBasicMaterial;
       // Create twinkling effect with varying frequencies
-      const twinkle = Math.sin(state.clock.elapsedTime * 2 + delay) * 0.5 + 0.5;
-      const pulse = Math.sin(state.clock.elapsedTime * 0.5 + delay * 0.3) * 0.3 + 0.7;
-      material.opacity = twinkle * pulse * 0.8 + 0.2;
+      const twinkle = Math.sin(state.clock.elapsedTime * 3 + delay) * 0.5 + 0.5;
+      const pulse = Math.sin(state.clock.elapsedTime * 0.8 + delay * 0.2) * 0.3 + 0.7;
+      material.opacity = twinkle * pulse * 0.7 + 0.3;
     }
   });
   
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.018, 6, 6]} />
+      <sphereGeometry args={[0.008, 4, 4]} />
       <meshBasicMaterial color="#ffffff" transparent opacity={0.8} />
     </mesh>
   );
@@ -243,14 +255,14 @@ function ContinentDots() {
           key={index}
           lat={dot.lat}
           lng={dot.lng}
-          delay={index * 0.1}
+          delay={index * 0.02}
         />
       ))}
     </group>
   );
 }
 
-// Earth globe with dot-based continents
+// Earth globe with dot-based continents and gradient blue sphere
 function Globe() {
   const globeRef = useRef<THREE.Group>(null);
   
@@ -262,21 +274,39 @@ function Globe() {
   
   return (
     <group ref={globeRef}>
-      {/* Dark Earth sphere */}
+      {/* Ocean base - deep blue */}
       <Sphere args={[2, 64, 64]}>
         <meshStandardMaterial
-          color="#0a1628"
-          metalness={0.3}
-          roughness={0.7}
+          color="#0066cc"
+          metalness={0.2}
+          roughness={0.8}
         />
       </Sphere>
       
-      {/* Grid lines for globe */}
-      <Sphere args={[2.005, 32, 32]}>
+      {/* Mid-layer gradient - lighter blue */}
+      <Sphere args={[2.001, 64, 64]}>
         <meshBasicMaterial
-          color="#1a3a5c"
+          color="#3388dd"
           transparent
-          opacity={0.15}
+          opacity={0.5}
+        />
+      </Sphere>
+      
+      {/* Top gradient highlight */}
+      <Sphere args={[2.002, 64, 64]}>
+        <meshBasicMaterial
+          color="#55aaff"
+          transparent
+          opacity={0.25}
+        />
+      </Sphere>
+      
+      {/* Subtle grid lines for globe */}
+      <Sphere args={[2.003, 36, 36]}>
+        <meshBasicMaterial
+          color="#88ccff"
+          transparent
+          opacity={0.08}
           wireframe
         />
       </Sphere>
@@ -284,12 +314,22 @@ function Globe() {
       {/* Continent dots */}
       <ContinentDots />
       
-      {/* Atmosphere glow */}
-      <Sphere args={[2.08, 64, 64]}>
+      {/* Atmosphere glow - soft blue */}
+      <Sphere args={[2.1, 64, 64]}>
         <meshBasicMaterial
-          color="#4488cc"
+          color="#66bbff"
           transparent
-          opacity={0.08}
+          opacity={0.12}
+          side={THREE.BackSide}
+        />
+      </Sphere>
+      
+      {/* Outer atmosphere haze */}
+      <Sphere args={[2.2, 64, 64]}>
+        <meshBasicMaterial
+          color="#aaddff"
+          transparent
+          opacity={0.05}
           side={THREE.BackSide}
         />
       </Sphere>
