@@ -79,9 +79,6 @@ function Overlay() {
 function SceneContent() {
   return (
     <>
-      {/* Fog to blend plane edges - pushed back so ship stays lit */}
-      <fog attach="fog" args={[OCEAN_COLOR, 50, 200]} />
-      
       {/* Strong Lighting */}
       <ambientLight intensity={2} />
       <directionalLight 
