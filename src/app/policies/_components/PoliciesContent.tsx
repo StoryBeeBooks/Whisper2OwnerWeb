@@ -451,40 +451,231 @@ function Disclaimers() {
     <div>
       <SectionTitle>Disclaimers</SectionTitle>
       
-      <SubSection title="1. General Disclaimer">
+      <SubSection title="1. General Information Disclaimer">
         <p>
-          The information provided on this website is for general informational purposes only. While we strive to keep
-          the information up to date and accurate, we make no representations or warranties of any kind, express or implied,
-          about the completeness, accuracy, reliability, suitability, or availability of the information.
+          ALL INFORMATION, CONTENT, MATERIALS, PRODUCTS, AND SERVICES PROVIDED ON THIS WEBSITE AND THROUGH OUR SERVICES 
+          ARE PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; FOR GENERAL INFORMATIONAL PURPOSES ONLY. WE MAKE NO REPRESENTATIONS, 
+          WARRANTIES, OR GUARANTEES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, REGARDING THE COMPLETENESS, 
+          ACCURACY, RELIABILITY, SUITABILITY, TIMELINESS, AVAILABILITY, CURRENCY, OR VALIDITY OF ANY INFORMATION OR MATERIALS.
+        </p>
+        <p>
+          Information provided may be outdated, incomplete, or inaccurate and may be changed, updated, or removed at any time 
+          without notice. We expressly disclaim any obligation to update or maintain any information. Your use of any information 
+          is entirely at your own risk, for which we shall not be liable.
         </p>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="2. Professional Advice">
+      <SubSection title="2. No Professional Advice">
         <p>
-          Nothing on this website constitutes professional legal, financial, or business advice. You should consult with
-          appropriate professionals before making any business decisions based on information found on this website.
+          NOTHING ON THIS WEBSITE OR PROVIDED THROUGH OUR SERVICES CONSTITUTES, NOR SHOULD BE CONSTRUED AS, PROFESSIONAL LEGAL, 
+          FINANCIAL, TAX, ACCOUNTING, INVESTMENT, BUSINESS, OR OTHER EXPERT ADVICE. The information provided is general in nature 
+          and does not take into account your specific circumstances, objectives, financial situation, or needs.
+        </p>
+        <p>
+          You are solely responsible for evaluating the appropriateness of any information, guidance, or services for your 
+          particular circumstances. We strongly recommend that you seek independent professional advice from qualified experts 
+          before making any decisions or taking any actions based on information obtained from this website or our services.
+        </p>
+        <p>
+          Any references to laws, regulations, programs, or requirements are for informational purposes only and may not be 
+          current, complete, or applicable to your situation. We do not provide legal interpretations and are not responsible 
+          for your compliance with any laws or regulations.
         </p>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="3. External Links">
+      <SubSection title="3. No Guarantees of Results or Outcomes">
         <p>
-          This website may contain links to external websites. We have no control over the content and nature of these
-          sites and are not responsible for their content or privacy practices.
+          WE MAKE NO PROMISES, REPRESENTATIONS, GUARANTEES, OR WARRANTIES REGARDING ANY OUTCOMES, RESULTS, BENEFITS, SUCCESS, 
+          PROFITS, APPROVALS, FUNDING, PARTNERSHIPS, SALES, OR ANY OTHER SPECIFIC ACHIEVEMENTS THAT MAY RESULT FROM YOUR USE OF 
+          OUR SERVICES OR RELIANCE ON INFORMATION PROVIDED. Any examples, case studies, testimonials, success stories, or references 
+          to past results are provided for illustrative purposes only and are not indicative of future performance or outcomes.
+        </p>
+        <p>
+          Individual results will vary significantly based on numerous factors including but not limited to: your business model, 
+          industry, market conditions, competition, economic environment, effort, resources, timing, qualifications, experience, 
+          and countless other variables beyond our control. No particular results are guaranteed or typical.
+        </p>
+        <p>
+          Your success depends entirely on your own efforts, resources, and circumstances. We assume no responsibility for your 
+          business decisions, strategies, or outcomes.
         </p>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="4. Results Disclaimer">
+      <SubSection title="4. Government Programs and Funding Disclaimer">
         <p>
-          Any examples of past results or testimonials are not guarantees of future performance. Individual results may vary
-          based on numerous factors including market conditions, business circumstances, and other variables.
+          Information regarding government grants, funding programs, tender opportunities, or other governmental initiatives is 
+          provided for informational purposes only. We are not affiliated with, endorsed by, or acting on behalf of any government 
+          agency or program. We do not guarantee the availability, eligibility, approval, or receipt of any government funding, 
+          grants, contracts, or benefits.
+        </p>
+        <p>
+          Government programs, requirements, deadlines, and policies are subject to change without notice and may vary by 
+          jurisdiction, industry, and individual circumstances. You are solely responsible for verifying all information with 
+          the relevant government authorities and ensuring compliance with all applicable requirements.
+        </p>
+        <p>
+          We are not responsible for any denials, rejections, delays, or failures to receive government funding or contracts, 
+          regardless of any services provided or information shared.
         </p>
       </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="5. Business Opportunities and Partnerships">
+        <p>
+          Any information, connections, introductions, or references provided regarding business opportunities, partnerships, 
+          sales networks, distribution channels, or potential collaborations do not constitute endorsements, recommendations, 
+          or guarantees. We make no representations regarding the suitability, reliability, quality, legitimacy, or performance 
+          of any third parties, businesses, or opportunities.
+        </p>
+        <p>
+          You are solely responsible for conducting your own due diligence, assessment, and evaluation of any opportunities or 
+          parties. All business relationships, transactions, and agreements are solely between you and the relevant third parties. 
+          We are not party to any such relationships and bear no responsibility for their outcomes.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="6. Market Information and Economic Data">
+        <p>
+          Any market analysis, trends, statistics, forecasts, or economic data provided are based on available information at 
+          a particular point in time and are subject to change. Market conditions are inherently uncertain and unpredictable. 
+          We make no warranties regarding the accuracy, reliability, or usefulness of such information for any particular purpose.
+        </p>
+        <p>
+          Past performance and historical data are not indicators of future results. Market trends and conditions can change 
+          rapidly and unexpectedly. Your business decisions should not be based solely on information provided by us.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="7. Third-Party Websites and External Links">
+        <p>
+          Our website may contain links, references, or connections to third-party websites, services, platforms, resources, 
+          or content over which we have no control. We do not endorse, verify, approve, monitor, or assume responsibility for 
+          any third-party websites, services, products, content, information, privacy practices, or policies.
+        </p>
+        <p>
+          Your interactions with third-party websites and services are solely between you and such third parties. We are not 
+          responsible for any damages, losses, or issues arising from your use of or reliance on third-party websites or services. 
+          You access third-party links and services at your own risk.
+        </p>
+        <p>
+          The inclusion of any link does not imply our endorsement, affiliation, or sponsorship of the linked website or its 
+          content. We reserve the right to remove any links at any time without notice.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="8. No Guarantees of Service Availability">
+        <p>
+          We do not guarantee that our website or services will be available at all times or that access will be uninterrupted, 
+          timely, secure, or error-free. The website and services may be subject to limitations, delays, interruptions, errors, 
+          or unavailability due to various factors including technical issues, maintenance, updates, or circumstances beyond 
+          our control.
+        </p>
+        <p>
+          We reserve the right to modify, suspend, discontinue, or restrict access to any aspect of the website or services at 
+          any time without notice or liability.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="9. Forward-Looking Statements">
+        <p>
+          Certain statements or information provided may constitute forward-looking statements regarding future events, developments, 
+          opportunities, or conditions. Such statements are based on current expectations and assumptions and are subject to risks, 
+          uncertainties, and changes in circumstances. Actual results, outcomes, and events may differ materially from those 
+          expressed or implied.
+        </p>
+        <p>
+          We undertake no obligation to update any forward-looking statements and expressly disclaim any duty to do so.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="10. No Agency or Representative Relationship">
+        <p>
+          Unless expressly stated in a separate written agreement, we do not act as your agent, representative, employee, partner, 
+          joint venturer, or fiduciary. Any services provided do not create an agency, employment, partnership, or representative 
+          relationship. We do not have authority to bind you or act on your behalf unless explicitly authorized in writing.
+        </p>
+        <p>
+          You are solely responsible for your own business decisions, actions, and obligations.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="11. Communication and Language">
+        <p>
+          While information may be provided in multiple languages, translations are provided for convenience only and may not 
+          be accurate, complete, or current. In the event of any inconsistency or discrepancy between translated versions, the 
+          English version shall prevail and govern.
+        </p>
+        <p>
+          We are not responsible for any errors, inaccuracies, or misunderstandings arising from translations or language differences.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="12. Changes and Updates">
+        <p>
+          All information, services, features, pricing, policies, and other aspects of the website and services are subject to 
+          change, modification, or discontinuation at any time without notice. We reserve the right to update, revise, or remove 
+          any content or information without obligation to notify users or maintain historical versions.
+        </p>
+        <p>
+          Continued use of the website or services following any changes constitutes acceptance of such changes.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="13. No Warranties">
+        <p>
+          TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, 
+          OR OTHERWISE, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, 
+          NON-INFRINGEMENT, QUALITY, ACCURACY, COMPLETENESS, OR PERFORMANCE.
+        </p>
+        <p>
+          WE DO NOT WARRANT THAT: (A) THE WEBSITE OR SERVICES WILL MEET YOUR REQUIREMENTS; (B) RESULTS OBTAINED WILL BE 
+          SATISFACTORY; (C) ANY INFORMATION WILL BE ACCURATE OR RELIABLE; (D) THE QUALITY OF ANY SERVICES OR MATERIALS WILL 
+          MEET YOUR EXPECTATIONS; OR (E) ANY ERRORS OR DEFECTS WILL BE CORRECTED.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="14. Assumption of Risk">
+        <p>
+          YOU ACKNOWLEDGE AND AGREE THAT YOUR USE OF THIS WEBSITE, THE SERVICES, AND ANY INFORMATION OR MATERIALS PROVIDED IS 
+          ENTIRELY AT YOUR OWN RISK. YOU ASSUME ALL RISKS ASSOCIATED WITH YOUR USE, INCLUDING BUT NOT LIMITED TO RISKS OF FINANCIAL 
+          LOSS, BUSINESS FAILURE, OPPORTUNITY COSTS, DAMAGE TO REPUTATION, LEGAL CONSEQUENCES, OR ANY OTHER ADVERSE OUTCOMES.
+        </p>
+        <p>
+          By using this website or services, you acknowledge that you have been advised to seek independent professional counsel 
+          and that you are proceeding at your own discretion and risk.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <p className="text-xs text-luxury-gray-light italic">
+        Last Updated: January 7, 2026
+      </p>
     </div>
   );
 }
