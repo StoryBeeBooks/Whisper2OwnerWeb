@@ -19,9 +19,6 @@ export default function PoliciesPage() {
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-luxury-black font-light tracking-wide uppercase mb-2 md:mb-3">
               {t('policies.title')}
             </h1>
-            <p className="text-[10px] sm:text-xs tracking-luxury uppercase text-luxury-gray-light">
-              Last Updated: January 3, 2026
-            </p>
           </header>
 
           {/* Tabbed Content */}
