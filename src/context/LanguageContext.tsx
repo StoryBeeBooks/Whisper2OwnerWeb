@@ -33,28 +33,85 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Sales Network Page
     'salesNetwork.title': 'Sales Network',
-    'salesNetwork.subtitle': 'A curated ecosystem of local partners, storefronts, and digital channels designed to maximize your brand\'s reach in the Canadian market.',
-    'salesNetwork.partnersTitle': 'Our Partners',
-    'salesNetwork.partner.localStorefronts': 'Local Storefronts',
-    'salesNetwork.partner.localStorefronts.desc': 'Boutique retail locations across Canada',
-    'salesNetwork.partner.smallBusinesses': 'Small Businesses',
-    'salesNetwork.partner.smallBusinesses.desc': 'Independent retailers and specialty shops',
-    'salesNetwork.partner.boutiqueGyms': 'Boutique Gyms',
-    'salesNetwork.partner.boutiqueGyms.desc': 'Fitness and wellness establishments',
-    'salesNetwork.partner.communityLeaders': 'Community Leaders',
-    'salesNetwork.partner.communityLeaders.desc': 'Influencers and local advocates',
-    'salesNetwork.partner.supermarketChains': 'Supermarket Chains',
-    'salesNetwork.partner.supermarketChains.desc': 'Major grocery and retail chains',
-    'salesNetwork.partner.amazonStore': 'Amazon Store',
-    'salesNetwork.partner.amazonStore.desc': 'Canada\'s largest online marketplace',
-    'salesNetwork.partner.shopifyStores': 'Shopify Stores',
-    'salesNetwork.partner.shopifyStores.desc': 'Direct-to-consumer e-commerce',
-    'salesNetwork.partner.etsyEbay': 'Etsy & eBay',
-    'salesNetwork.partner.etsyEbay.desc': 'Specialty and marketplace selling',
-    'salesNetwork.partner.groupon': 'Groupon',
-    'salesNetwork.partner.groupon.desc': 'Deal-based customer acquisition',
-    'salesNetwork.cta': 'Ready to expand your brand\'s presence in Canada?',
-    'salesNetwork.contactUs': 'Contact Us',
+    'salesNetwork.subtitle': 'End-to-end sales enablement for brands entering and expanding in the Canadian market.',
+    
+    // Value Proposition
+    'salesNetwork.valueTitle': 'Your Strategic Sales Partner in Canada',
+    'salesNetwork.valueDesc': 'We don\'t just connect you to channels—we build the infrastructure for sustainable sales growth. From market entry strategy to omnichannel execution, our integrated approach combines world-class consulting with cutting-edge technology to transform your products and services into market success stories.',
+    
+    // Capabilities
+    'salesNetwork.capabilitiesTitle': 'Core Capabilities',
+    'salesNetwork.capability.market': 'Market Entry Strategy',
+    'salesNetwork.capability.market.desc': 'Comprehensive market analysis, competitive positioning, and go-to-market planning tailored to Canadian consumer behavior and regulatory requirements.',
+    'salesNetwork.capability.channel': 'Channel Development',
+    'salesNetwork.capability.channel.desc': 'Multi-channel distribution strategy spanning retail, wholesale, e-commerce, and direct-to-consumer models with established partner networks.',
+    'salesNetwork.capability.brand': 'Brand Localization',
+    'salesNetwork.capability.brand.desc': 'Cultural adaptation, bilingual marketing, and brand positioning that resonates with Canadian audiences across provinces and demographics.',
+    'salesNetwork.capability.operations': 'Sales Operations',
+    'salesNetwork.capability.operations.desc': 'End-to-end fulfillment, inventory management, customer service infrastructure, and performance analytics for scalable growth.',
+    
+    // Sales Channels
+    'salesNetwork.channelsTitle': 'Sales Channels',
+    'salesNetwork.channel.amazon': 'Amazon Canada',
+    'salesNetwork.channel.amazon.desc': 'Full-service Amazon presence management, FBA optimization, and marketplace growth',
+    'salesNetwork.channel.shopify': 'E-Commerce Stores',
+    'salesNetwork.channel.shopify.desc': 'Shopify, WooCommerce, and custom D2C storefronts with integrated marketing',
+    'salesNetwork.channel.retail': 'Retail Distribution',
+    'salesNetwork.channel.retail.desc': 'National chains, regional retailers, and specialty boutiques across Canada',
+    'salesNetwork.channel.wholesale': 'Wholesale Networks',
+    'salesNetwork.channel.wholesale.desc': 'B2B distribution, bulk sales, and corporate partnerships',
+    'salesNetwork.channel.marketplace': 'Marketplaces',
+    'salesNetwork.channel.marketplace.desc': 'Etsy, eBay, Walmart, and emerging platform integration',
+    'salesNetwork.channel.directSales': 'Direct Sales',
+    'salesNetwork.channel.directSales.desc': 'Community-driven sales, affiliate programs, and influencer partnerships',
+    
+    // Industries
+    'salesNetwork.industriesTitle': 'Industries We Serve',
+    'salesNetwork.industriesDesc': 'Our expertise spans diverse sectors, enabling successful market entry for products and services across categories.',
+    'salesNetwork.industry.food': 'Food & Beverage',
+    'salesNetwork.industry.beauty': 'Beauty & Cosmetics',
+    'salesNetwork.industry.health': 'Health & Wellness',
+    'salesNetwork.industry.home': 'Home & Living',
+    'salesNetwork.industry.fashion': 'Fashion & Apparel',
+    'salesNetwork.industry.electronics': 'Electronics & Tech',
+    'salesNetwork.industry.sports': 'Sports & Outdoors',
+    'salesNetwork.industry.pet': 'Pet Products',
+    
+    // Strategic Partners
+    'salesNetwork.partnersTitle': 'Strategic Partners',
+    'salesNetwork.partnersSubtitle': 'We\'ve assembled a world-class ecosystem of partners to deliver comprehensive solutions—from strategic consulting to technical implementation.',
+    
+    // NRIDL
+    'salesNetwork.nridl.title': 'NRIDL',
+    'salesNetwork.nridl.type': 'Digital Transformation Consulting',
+    'salesNetwork.nridl.desc': 'NRIDL is our strategic consulting partner specializing in digital transformation and business process optimization. As a non-profit organization dedicated to empowering businesses through technology adoption, NRIDL provides the strategic framework and change management expertise that enables organizations to modernize operations, optimize workflows, and achieve sustainable competitive advantages in the digital economy.',
+    'salesNetwork.nridl.tag1': 'Digital Strategy',
+    'salesNetwork.nridl.tag2': 'Process Optimization',
+    'salesNetwork.nridl.tag3': 'Change Management',
+    'salesNetwork.nridl.tag4': 'Business Analysis',
+    
+    // WTheory
+    'salesNetwork.wtheory.title': 'WTheory',
+    'salesNetwork.wtheory.type': 'Technology Implementation',
+    'salesNetwork.wtheory.desc': 'WTheory is our technology implementation partner delivering enterprise-grade solutions for businesses of all sizes. From custom e-commerce platforms and Amazon storefront optimization to workflow automation and system integration, WTheory transforms strategic vision into operational reality with scalable, secure, and high-performance technology solutions.',
+    'salesNetwork.wtheory.tag1': 'E-Commerce Development',
+    'salesNetwork.wtheory.tag2': 'Amazon Integration',
+    'salesNetwork.wtheory.tag3': 'Process Automation',
+    'salesNetwork.wtheory.tag4': 'System Integration',
+    
+    // Why Choose Us
+    'salesNetwork.whyUsTitle': 'The Whisper2Owner Advantage',
+    'salesNetwork.whyUs.results': 'Results-Driven',
+    'salesNetwork.whyUs.results.desc': 'We measure success by your sales growth. Our performance-oriented approach ensures every strategy translates to revenue.',
+    'salesNetwork.whyUs.speed': 'Speed to Market',
+    'salesNetwork.whyUs.speed.desc': 'Established networks and proven processes mean faster market entry and quicker time to first sale.',
+    'salesNetwork.whyUs.reach': 'National Reach',
+    'salesNetwork.whyUs.reach.desc': 'Coast-to-coast coverage with localized expertise in key markets across all Canadian provinces.',
+    
+    // CTA
+    'salesNetwork.ctaTitle': 'Ready to Accelerate Your Canadian Sales?',
+    'salesNetwork.ctaDesc': 'Let\'s discuss how our integrated approach can transform your market presence and drive sustainable growth in Canada.',
+    'salesNetwork.contactUs': 'Start the Conversation',
     
     // Canada Funding Page
     'canadaFunding.title': 'Canada Funding',
@@ -146,28 +203,85 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Sales Network Page
     'salesNetwork.title': '销售网络',
-    'salesNetwork.subtitle': '精心打造的本地合作伙伴、店铺和数字渠道生态系统，旨在最大化您的品牌在加拿大市场的覆盖范围。',
-    'salesNetwork.partnersTitle': '我们的合作伙伴',
-    'salesNetwork.partner.localStorefronts': '本地店铺',
-    'salesNetwork.partner.localStorefronts.desc': '遍布加拿大的精品零售店',
-    'salesNetwork.partner.smallBusinesses': '小型企业',
-    'salesNetwork.partner.smallBusinesses.desc': '独立零售商和专卖店',
-    'salesNetwork.partner.boutiqueGyms': '精品健身房',
-    'salesNetwork.partner.boutiqueGyms.desc': '健身和健康机构',
-    'salesNetwork.partner.communityLeaders': '社区领袖',
-    'salesNetwork.partner.communityLeaders.desc': '网红和本地推广者',
-    'salesNetwork.partner.supermarketChains': '连锁超市',
-    'salesNetwork.partner.supermarketChains.desc': '大型杂货和零售连锁店',
-    'salesNetwork.partner.amazonStore': '亚马逊商店',
-    'salesNetwork.partner.amazonStore.desc': '加拿大最大的在线市场',
-    'salesNetwork.partner.shopifyStores': 'Shopify商店',
-    'salesNetwork.partner.shopifyStores.desc': '直接面向消费者的电子商务',
-    'salesNetwork.partner.etsyEbay': 'Etsy & eBay',
-    'salesNetwork.partner.etsyEbay.desc': '专业和市场销售',
-    'salesNetwork.partner.groupon': 'Groupon团购',
-    'salesNetwork.partner.groupon.desc': '基于优惠的客户获取',
-    'salesNetwork.cta': '准备好在加拿大扩展您的品牌了吗？',
-    'salesNetwork.contactUs': '联系我们',
+    'salesNetwork.subtitle': '为进入和拓展加拿大市场的品牌提供端到端销售赋能服务。',
+    
+    // Value Proposition
+    'salesNetwork.valueTitle': '您在加拿大的战略销售伙伴',
+    'salesNetwork.valueDesc': '我们不仅仅是连接渠道——我们构建可持续销售增长的基础设施。从市场进入策略到全渠道执行，我们的整合方法将世界一流的咨询服务与尖端技术相结合，将您的产品和服务转化为市场成功案例。',
+    
+    // Capabilities
+    'salesNetwork.capabilitiesTitle': '核心能力',
+    'salesNetwork.capability.market': '市场进入策略',
+    'salesNetwork.capability.market.desc': '针对加拿大消费者行为和监管要求量身定制的全面市场分析、竞争定位和市场推广规划。',
+    'salesNetwork.capability.channel': '渠道开发',
+    'salesNetwork.capability.channel.desc': '涵盖零售、批发、电子商务和直接面向消费者模式的多渠道分销策略，拥有成熟的合作伙伴网络。',
+    'salesNetwork.capability.brand': '品牌本地化',
+    'salesNetwork.capability.brand.desc': '文化适应、双语营销和品牌定位，与加拿大各省份和人群产生共鸣。',
+    'salesNetwork.capability.operations': '销售运营',
+    'salesNetwork.capability.operations.desc': '端到端履约、库存管理、客户服务基础设施和绩效分析，实现可扩展增长。',
+    
+    // Sales Channels
+    'salesNetwork.channelsTitle': '销售渠道',
+    'salesNetwork.channel.amazon': '亚马逊加拿大',
+    'salesNetwork.channel.amazon.desc': '全方位亚马逊运营管理、FBA优化和市场增长',
+    'salesNetwork.channel.shopify': '电商店铺',
+    'salesNetwork.channel.shopify.desc': 'Shopify、WooCommerce和定制D2C店铺，整合营销',
+    'salesNetwork.channel.retail': '零售分销',
+    'salesNetwork.channel.retail.desc': '全国连锁、区域零售商和加拿大各地的专卖店',
+    'salesNetwork.channel.wholesale': '批发网络',
+    'salesNetwork.channel.wholesale.desc': 'B2B分销、批量销售和企业合作',
+    'salesNetwork.channel.marketplace': '电商平台',
+    'salesNetwork.channel.marketplace.desc': 'Etsy、eBay、Walmart和新兴平台整合',
+    'salesNetwork.channel.directSales': '直销',
+    'salesNetwork.channel.directSales.desc': '社区驱动销售、联盟计划和网红合作',
+    
+    // Industries
+    'salesNetwork.industriesTitle': '服务行业',
+    'salesNetwork.industriesDesc': '我们的专业知识涵盖多个领域，助力各类产品和服务成功进入市场。',
+    'salesNetwork.industry.food': '食品饮料',
+    'salesNetwork.industry.beauty': '美妆护肤',
+    'salesNetwork.industry.health': '健康保健',
+    'salesNetwork.industry.home': '家居生活',
+    'salesNetwork.industry.fashion': '时尚服饰',
+    'salesNetwork.industry.electronics': '电子科技',
+    'salesNetwork.industry.sports': '运动户外',
+    'salesNetwork.industry.pet': '宠物用品',
+    
+    // Strategic Partners
+    'salesNetwork.partnersTitle': '战略合作伙伴',
+    'salesNetwork.partnersSubtitle': '我们汇集了世界一流的合作伙伴生态系统，从战略咨询到技术实施，提供全面解决方案。',
+    
+    // NRIDL
+    'salesNetwork.nridl.title': 'NRIDL',
+    'salesNetwork.nridl.type': '数字化转型咨询',
+    'salesNetwork.nridl.desc': 'NRIDL是我们专注于数字化转型和业务流程优化的战略咨询合作伙伴。作为一家致力于通过技术赋能企业的非营利组织，NRIDL提供战略框架和变革管理专业知识，帮助组织实现运营现代化、优化工作流程，并在数字经济中获得可持续的竞争优势。',
+    'salesNetwork.nridl.tag1': '数字战略',
+    'salesNetwork.nridl.tag2': '流程优化',
+    'salesNetwork.nridl.tag3': '变革管理',
+    'salesNetwork.nridl.tag4': '业务分析',
+    
+    // WTheory
+    'salesNetwork.wtheory.title': 'WTheory',
+    'salesNetwork.wtheory.type': '技术实施',
+    'salesNetwork.wtheory.desc': 'WTheory是我们的技术实施合作伙伴，为各种规模的企业提供企业级解决方案。从定制电商平台和亚马逊店铺优化，到工作流程自动化和系统集成，WTheory以可扩展、安全和高性能的技术解决方案将战略愿景转化为运营现实。',
+    'salesNetwork.wtheory.tag1': '电商开发',
+    'salesNetwork.wtheory.tag2': '亚马逊整合',
+    'salesNetwork.wtheory.tag3': '流程自动化',
+    'salesNetwork.wtheory.tag4': '系统集成',
+    
+    // Why Choose Us
+    'salesNetwork.whyUsTitle': 'Whisper2Owner优势',
+    'salesNetwork.whyUs.results': '结果导向',
+    'salesNetwork.whyUs.results.desc': '我们以您的销售增长来衡量成功。我们的绩效导向方法确保每一项策略都能转化为收入。',
+    'salesNetwork.whyUs.speed': '快速上市',
+    'salesNetwork.whyUs.speed.desc': '成熟的网络和经过验证的流程意味着更快的市场进入和更短的首次销售时间。',
+    'salesNetwork.whyUs.reach': '全国覆盖',
+    'salesNetwork.whyUs.reach.desc': '覆盖加拿大全境，在各省主要市场拥有本地化专业知识。',
+    
+    // CTA
+    'salesNetwork.ctaTitle': '准备好加速您的加拿大销售了吗？',
+    'salesNetwork.ctaDesc': '让我们讨论我们的整合方法如何转变您的市场地位，并在加拿大推动可持续增长。',
+    'salesNetwork.contactUs': '开始对话',
     
     // Canada Funding Page
     'canadaFunding.title': '政府补助',
