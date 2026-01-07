@@ -127,11 +127,11 @@ export default function OceanScene() {
   const { t } = useLanguage();
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       {/* Navigation hamburger menu */}
       <Navigation />
       
-      <main className="h-screen w-full relative bg-gradient-to-b from-white from-0% via-sky-200 via-70% to-[#001e36] to-100%">
+      <main className="flex-1 w-full relative bg-gradient-to-b from-white from-0% via-sky-200 via-70% to-[#001e36] to-100%">
         <Canvas
           camera={{ position: [0, 5, 35], fov: 45 }}
           className="absolute inset-0 z-0"
@@ -171,7 +171,7 @@ export default function OceanScene() {
       
       {/* Footer */}
       <Footer />
-    </>
+    </div>
   );
 }
 
