@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function SubscribePage() {
@@ -34,9 +36,12 @@ export default function SubscribePage() {
   };
 
   return (
-    <main className="min-h-screen bg-warm-white">
+    <div className="min-h-screen bg-warm-white">
+      <Navigation />
+      
+      <main className="bg-warm-white">
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4 md:px-6 bg-gradient-to-b from-white to-warm-white">
+      <section className="pt-24 md:pt-28 pb-12 px-4 md:px-6 bg-gradient-to-b from-white to-warm-white">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl font-light text-luxury-black mb-6 tracking-tight">
             {t('subscribe.title')}
@@ -187,5 +192,8 @@ export default function SubscribePage() {
         </div>
       </section>
     </main>
+
+    <Footer />
+    </div>
   );
 }
