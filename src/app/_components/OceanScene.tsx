@@ -95,23 +95,27 @@ function Overlay() {
 function SceneContent() {
   return (
     <>
-      {/* Fog to blend plane edges - matches gradient bottom */}
-      <fog attach="fog" args={[OCEAN_COLOR, 5, 40]} />
+      {/* Fog to blend plane edges - pushed back so ship stays lit */}
+      <fog attach="fog" args={[OCEAN_COLOR, 50, 200]} />
       
-      {/* Lighting */}
-      <ambientLight intensity={1.5} />
+      {/* Strong Lighting */}
+      <ambientLight intensity={2} />
       <directionalLight 
         position={[10, 20, 10]} 
-        intensity={2} 
+        intensity={3} 
         castShadow
       />
       <directionalLight 
         position={[-10, 10, -10]} 
-        intensity={1} 
+        intensity={2} 
+      />
+      <directionalLight 
+        position={[0, 10, -20]} 
+        intensity={1.5} 
       />
       
-      {/* Environment for realistic reflections */}
-      <Environment preset="sunset" />
+      {/* Environment for realistic reflections and IBL lighting */}
+      <Environment preset="sunset" background={false} environmentIntensity={1.5} />
       
       {/* Flat Sea Plane */}
       <SeaPlane />
