@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { 
   useGLTF, 
   Environment, 
@@ -16,10 +16,15 @@ const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
 const SHIP_SCALE = 50;
 const OCEAN_COLOR = '#001e36'; // Deep navy blue - matches gradient bottom
 
-// Ship with Code-Driven Floating Animation
+// Ship with Code-Driven Floating Animation (Responsive)
 function Ship() {
   const { scene } = useGLTF(SHIP_URL);
   const shipRef = useRef<THREE.Group>(null);
+  const { viewport } = useThree();
+
+  // Responsive scale: shrinks on mobile, maxes out at 1x on desktop
+  const scaleFactor = Math.min(viewport.width / 10, 1);
+  const responsiveScale = SHIP_SCALE * scaleFactor;
 
   // Floating animation parameters
   const bobAmplitude = 2;
@@ -32,7 +37,7 @@ function Ship() {
       const time = state.clock.elapsedTime;
       
       // Bob up and down using sine wave
-      shipRef.current.position.y = Math.sin(time * bobFrequency) * bobAmplitude;
+      shipRef.current.position.y = -1 + Math.sin(time * bobFrequency) * bobAmplitude;
       
       // Rock back and forth (rotation on Z axis)
       shipRef.current.rotation.z = Math.sin(time * rockFrequency) * rockAmplitude;
@@ -43,28 +48,28 @@ function Ship() {
   });
 
   return (
-    <group ref={shipRef} position={[0, 0, 0]}>
+    <group ref={shipRef} position={[0, -1, 0]}>
       <primitive 
         object={scene} 
-        scale={SHIP_SCALE}
+        scale={responsiveScale}
       />
     </group>
   );
 }
 
-// Text Overlay
+// Text Overlay - positioned at bottom
 function Overlay() {
   return (
     <Html fullscreen className="pointer-events-none">
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+      <div className="absolute bottom-20 left-0 w-full text-center px-6 z-10">
         <h1 
-          className="font-display text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-wide mb-6 leading-tight max-w-4xl"
+          className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4 leading-tight"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
         >
           Whisper2Owner
         </h1>
         <p 
-          className="text-white/90 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-3xl"
+          className="text-white/90 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl mx-auto"
           style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.5)' }}
         >
           Bridging International Brands with Local Canadian Consumers.
