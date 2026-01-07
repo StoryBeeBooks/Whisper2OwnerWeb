@@ -1,6 +1,6 @@
 'use client';
 
-import { FileText, Search, CheckCircle, Clock, Landmark, Building, MapPin, Shield, Truck, Cpu, HardHat, Stethoscope, GraduationCap, Utensils, ExternalLink, ArrowRight } from 'lucide-react';
+import { FileText, Search, CheckCircle, Clock, Landmark, Building, MapPin, Shield, Truck, Cpu, HardHat, Stethoscope, GraduationCap, Utensils, ExternalLink, ArrowRight, AlertTriangle, Target, TrendingUp, Users, Lightbulb, Eye, ClipboardCheck, FileCheck, Award, Timer, Layers, Filter, BookOpen, Headphones } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -15,6 +15,48 @@ export default function TenderOpportunitiesPage() {
     { value: '15,000+', labelKey: 'tender.stat.contracts' },
     { value: '30%', labelKey: 'tender.stat.sme' },
     { value: '45 Days', labelKey: 'tender.stat.avgTime' },
+  ];
+
+  const painPoints = [
+    { icon: Timer, titleKey: 'tender.pain.time', descKey: 'tender.pain.time.desc' },
+    { icon: Layers, titleKey: 'tender.pain.overwhelming', descKey: 'tender.pain.overwhelming.desc' },
+    { icon: FileCheck, titleKey: 'tender.pain.complexity', descKey: 'tender.pain.complexity.desc' },
+    { icon: Target, titleKey: 'tender.pain.relevance', descKey: 'tender.pain.relevance.desc' },
+  ];
+
+  const services = [
+    { 
+      icon: Eye, 
+      titleKey: 'tender.service.monitoring', 
+      subtitleKey: 'tender.service.monitoring.subtitle',
+      descKey: 'tender.service.monitoring.desc',
+      features: ['tender.service.monitoring.f1', 'tender.service.monitoring.f2', 'tender.service.monitoring.f3', 'tender.service.monitoring.f4'],
+      painSolvedKey: 'tender.service.monitoring.solve'
+    },
+    { 
+      icon: Filter, 
+      titleKey: 'tender.service.matching', 
+      subtitleKey: 'tender.service.matching.subtitle',
+      descKey: 'tender.service.matching.desc',
+      features: ['tender.service.matching.f1', 'tender.service.matching.f2', 'tender.service.matching.f3', 'tender.service.matching.f4'],
+      painSolvedKey: 'tender.service.matching.solve'
+    },
+    { 
+      icon: ClipboardCheck, 
+      titleKey: 'tender.service.qualification', 
+      subtitleKey: 'tender.service.qualification.subtitle',
+      descKey: 'tender.service.qualification.desc',
+      features: ['tender.service.qualification.f1', 'tender.service.qualification.f2', 'tender.service.qualification.f3', 'tender.service.qualification.f4'],
+      painSolvedKey: 'tender.service.qualification.solve'
+    },
+    { 
+      icon: BookOpen, 
+      titleKey: 'tender.service.bidprep', 
+      subtitleKey: 'tender.service.bidprep.subtitle',
+      descKey: 'tender.service.bidprep.desc',
+      features: ['tender.service.bidprep.f1', 'tender.service.bidprep.f2', 'tender.service.bidprep.f3', 'tender.service.bidprep.f4'],
+      painSolvedKey: 'tender.service.bidprep.solve'
+    },
   ];
 
   const processSteps = [
@@ -128,6 +170,159 @@ export default function TenderOpportunitiesPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Pain Points Section - The Reality for Small Businesses */}
+          <section className="mb-16 md:mb-24">
+            <div className="text-center mb-10 md:mb-14">
+              <h2 className="font-display text-xl md:text-2xl lg:text-3xl text-luxury-black font-light tracking-wide mb-4">
+                {t('tender.painTitle')}
+              </h2>
+              <p className="text-luxury-gray text-sm md:text-base font-light max-w-3xl mx-auto">
+                {t('tender.painSubtitle')}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {painPoints.map((pain) => {
+                const IconComponent = pain.icon;
+                return (
+                  <div
+                    key={pain.titleKey}
+                    className="p-6 md:p-8 bg-gradient-to-br from-red-50/30 to-warm-card border border-red-100/50 rounded-luxury"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <IconComponent strokeWidth={1} className="w-6 h-6 text-red-700" />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-lg md:text-xl text-luxury-black font-medium mb-2">
+                          {t(pain.titleKey)}
+                        </h3>
+                        <p className="text-luxury-gray text-sm md:text-base font-light leading-relaxed">
+                          {t(pain.descKey)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Our Services - Detailed Solutions */}
+          <section className="mb-16 md:mb-24">
+            <div className="text-center mb-10 md:mb-14">
+              <h2 className="font-display text-xl md:text-2xl lg:text-3xl text-luxury-black font-light tracking-wide mb-4 uppercase">
+                {t('tender.servicesTitle')}
+              </h2>
+              <p className="text-luxury-gray text-sm md:text-base font-light max-w-3xl mx-auto">
+                {t('tender.servicesSubtitle')}
+              </p>
+            </div>
+
+            <div className="space-y-8 md:space-y-12">
+              {services.map((service, index) => {
+                const IconComponent = service.icon;
+                const isEven = index % 2 === 0;
+                return (
+                  <div
+                    key={service.titleKey}
+                    className={`p-6 md:p-10 bg-gradient-to-br ${isEven ? 'from-emerald-50/50 to-warm-card' : 'from-blue-50/50 to-warm-card'} border border-warm-sand rounded-luxury`}
+                  >
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
+                      {/* Service Header */}
+                      <div className="lg:col-span-1">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className={`w-14 h-14 ${isEven ? 'bg-emerald-100' : 'bg-blue-100'} rounded-full flex items-center justify-center`}>
+                            <IconComponent strokeWidth={1} className={`w-7 h-7 ${isEven ? 'text-emerald-700' : 'text-blue-700'}`} />
+                          </div>
+                          <div>
+                            <span className={`text-xs font-medium ${isEven ? 'text-emerald-600' : 'text-blue-600'} uppercase tracking-wider`}>
+                              {t('tender.service.label')} {index + 1}
+                            </span>
+                          </div>
+                        </div>
+                        <h3 className="font-display text-xl md:text-2xl text-luxury-black font-medium mb-2">
+                          {t(service.titleKey)}
+                        </h3>
+                        <p className={`text-sm ${isEven ? 'text-emerald-700' : 'text-blue-700'} font-medium mb-4`}>
+                          {t(service.subtitleKey)}
+                        </p>
+                        <p className="text-luxury-gray text-sm md:text-base font-light leading-relaxed">
+                          {t(service.descKey)}
+                        </p>
+                      </div>
+
+                      {/* Features */}
+                      <div className="lg:col-span-1">
+                        <h4 className="text-sm font-medium text-luxury-black uppercase tracking-wider mb-4">
+                          {t('tender.service.whatWeDeliver')}
+                        </h4>
+                        <ul className="space-y-3">
+                          {service.features.map((feature) => (
+                            <li key={feature} className="flex items-start gap-2">
+                              <CheckCircle strokeWidth={1.5} className={`w-5 h-5 ${isEven ? 'text-emerald-600' : 'text-blue-600'} flex-shrink-0 mt-0.5`} />
+                              <span className="text-luxury-gray text-sm font-light">{t(feature)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Pain Solved */}
+                      <div className="lg:col-span-1">
+                        <div className={`p-5 ${isEven ? 'bg-emerald-100/50' : 'bg-blue-100/50'} rounded-lg`}>
+                          <h4 className="text-sm font-medium text-luxury-black uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <Lightbulb strokeWidth={1.5} className="w-4 h-4" />
+                            {t('tender.service.howItHelps')}
+                          </h4>
+                          <p className={`text-sm ${isEven ? 'text-emerald-800' : 'text-blue-800'} font-light leading-relaxed`}>
+                            {t(service.painSolvedKey)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Value Proposition Banner */}
+          <section className="mb-16 md:mb-24 bg-gradient-to-r from-luxury-black to-slate-800 rounded-luxury p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              <div className="md:col-span-2">
+                <h2 className="font-display text-2xl md:text-3xl text-white font-light tracking-wide mb-4">
+                  {t('tender.valueTitle')}
+                </h2>
+                <p className="text-white/80 text-sm md:text-base font-light leading-relaxed">
+                  {t('tender.valueDesc')}
+                </p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <Award strokeWidth={1} className="w-8 h-8 text-amber-400" />
+                  <div>
+                    <div className="text-white font-medium">{t('tender.value.winrate')}</div>
+                    <div className="text-white/60 text-sm">{t('tender.value.winrate.desc')}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock strokeWidth={1} className="w-8 h-8 text-emerald-400" />
+                  <div>
+                    <div className="text-white font-medium">{t('tender.value.timesaved')}</div>
+                    <div className="text-white/60 text-sm">{t('tender.value.timesaved.desc')}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Headphones strokeWidth={1} className="w-8 h-8 text-blue-400" />
+                  <div>
+                    <div className="text-white font-medium">{t('tender.value.support')}</div>
+                    <div className="text-white/60 text-sm">{t('tender.value.support.desc')}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
