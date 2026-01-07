@@ -16,22 +16,6 @@ const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
 const SHIP_SCALE = 50;
 const OCEAN_COLOR = '#001e36'; // Deep navy blue - matches gradient bottom
 
-// Flat Sea Surface Plane
-function SeaPlane() {
-  return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} receiveShadow>
-      <planeGeometry args={[1000, 1000]} />
-      <meshStandardMaterial 
-        color={OCEAN_COLOR}
-        transparent
-        opacity={0.85}
-        roughness={0.3}
-        metalness={0.1}
-      />
-    </mesh>
-  );
-}
-
 // Ship with Code-Driven Floating Animation
 function Ship() {
   const { scene } = useGLTF(SHIP_URL);
@@ -116,9 +100,6 @@ function SceneContent() {
       
       {/* Environment for realistic reflections and IBL lighting */}
       <Environment preset="sunset" background={false} environmentIntensity={1.5} />
-      
-      {/* Flat Sea Plane */}
-      <SeaPlane />
       
       {/* Ship */}
       <Ship />
