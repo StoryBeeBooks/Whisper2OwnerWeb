@@ -128,8 +128,8 @@ const translations: Record<Language, Record<string, string>> = {
     // Navigation
     'nav.main': '首页',
     'nav.salesNetwork': '销售网络',
-    'nav.canadaFunding': '加拿大资助',
-    'nav.tenderOpportunities': '招标机会',
+    'nav.canadaFunding': '政府补助',
+    'nav.tenderOpportunities': '政府招标',
     'nav.internationalOpportunities': '国际机会',
     'nav.supportEmail': 'support@Whisper2Owner.com',
     'nav.copyright': '2026 Whisper2Owner.com',
@@ -170,20 +170,20 @@ const translations: Record<Language, Record<string, string>> = {
     'salesNetwork.contactUs': '联系我们',
     
     // Canada Funding Page
-    'canadaFunding.title': '加拿大资助',
-    'canadaFunding.subtitle': '了解加拿大资助计划和政府激励措施，支持业务增长和市场扩张。',
+    'canadaFunding.title': '政府补助',
+    'canadaFunding.subtitle': '了解加拿大政府补助计划和激励措施，支持您的业务增长和市场扩张。',
     'canadaFunding.comingSoon': '即将推出',
-    'canadaFunding.comingSoonDesc': '我们正在整理有关进入加拿大市场的企业可获得的资助计划、补助金和激励措施的全面信息。',
+    'canadaFunding.comingSoonDesc': '我们正在整理有关加拿大政府补助计划、补贴和激励措施的全面信息，助力企业发展。',
     'canadaFunding.getNotified': '获取上线通知',
-    'canadaFunding.questions': '对资助机会有疑问？',
+    'canadaFunding.questions': '对政府补助有疑问？',
     
     // Tender Opportunities Page
-    'tenderOpportunities.title': '招标机会',
-    'tenderOpportunities.subtitle': '获取精选的政府和企业招标机会，帮助您在加拿大竞标合同。',
+    'tenderOpportunities.title': '政府招标',
+    'tenderOpportunities.subtitle': '获取精选的政府招标和采购机会，帮助您在加拿大赢得政府合同。',
     'tenderOpportunities.comingSoon': '即将推出',
-    'tenderOpportunities.comingSoonDesc': '我们正在建立一个全面的招标机会数据库、采购通知和定制的RFP提醒。',
+    'tenderOpportunities.comingSoonDesc': '我们正在建立全面的政府招标数据库、采购公告和定制的投标提醒服务。',
     'tenderOpportunities.getNotified': '获取上线通知',
-    'tenderOpportunities.shareTender': '有招标机会想分享？',
+    'tenderOpportunities.shareTender': '有政府招标信息想分享？',
     
     // International Opportunities Page
     'international.title': '国际机会',
