@@ -72,10 +72,15 @@ function Overlay() {
           Whisper2Owner
         </h1>
         <p 
-          className="text-white/90 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl mx-auto"
+          className="text-white/90 text-xs md:text-sm tracking-luxury uppercase font-light leading-relaxed max-w-2xl mx-auto mb-6"
           style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.5)' }}
         >
-          Bridging International Brands with Local Canadian Consumers.
+          Bridging International Brands with Local Canadian Consumers
+        </p>
+        <p 
+          className="text-white/70 text-sm md:text-base font-light leading-relaxed max-w-xl mx-auto"
+          style={{ textShadow: '0 2px 10px rgba(0,0,0,0.6)' }}
+        >
           We optimize revenue strategies by connecting you with the right customer segments.
         </p>
       </div>
