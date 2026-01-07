@@ -39,18 +39,11 @@ export default function TenderOpportunitiesPage() {
               {t('tenderOpportunities.title')}
             </h1>
             <p 
-              className="text-white/90 text-sm sm:text-base md:text-lg font-light max-w-2xl mx-auto mb-6 md:mb-8"
+              className="text-white/90 text-sm sm:text-base md:text-lg font-light max-w-2xl mx-auto"
               style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
             >
               {t('tenderOpportunities.subtitle')}
             </p>
-            <a
-              href="mailto:support@Whisper2Owner.com"
-              className="inline-block px-6 py-3 border border-white text-white text-xs sm:text-sm tracking-wide uppercase
-                         hover:bg-white hover:text-luxury-black transition-all duration-300"
-            >
-              {t('tenderOpportunities.getNotified')}
-            </a>
           </div>
         </div>
       </section>

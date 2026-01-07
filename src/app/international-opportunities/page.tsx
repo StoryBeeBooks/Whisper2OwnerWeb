@@ -4,6 +4,8 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 
+const VIDEO_URL = 'https://assets.k12path.com/whisper2owner/barley.mp4';
+
 export default function InternationalOpportunitiesPage() {
   const { t } = useLanguage();
 
@@ -48,20 +50,46 @@ export default function InternationalOpportunitiesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-warm-white">
+    <div className="bg-warm-white">
       <Navigation />
       
-      <main className="pt-20 md:pt-24 pb-12 md:pb-16 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto">
-          <header className="mb-10 md:mb-16 text-center">
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-luxury-black font-light tracking-wide mb-4 md:mb-6">
+      {/* Hero Section with Video Background */}
+      <section className="relative h-[calc(100vh-52px)] w-full overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={VIDEO_URL} type="video/mp4" />
+        </video>
+        
+        {/* Dark overlay - gradient from transparent to dark in bottom half */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-40% via-black/50 via-70% to-black/80 to-100%" />
+        
+        {/* Content - positioned in bottom half */}
+        <div className="absolute inset-0 flex flex-col justify-end pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 
+              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4 md:mb-6"
+              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
+            >
               {t('international.title')}
             </h1>
-            <p className="text-luxury-gray text-sm md:text-lg font-light max-w-2xl mx-auto">
+            <p 
+              className="text-white/90 text-sm sm:text-base md:text-lg font-light max-w-2xl mx-auto"
+              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
+            >
               {t('international.subtitle')}
             </p>
-          </header>
-
+          </div>
+        </div>
+      </section>
+      
+      <main className="py-12 md:py-16 px-4 md:px-6">
+        <div className="max-w-4xl mx-auto">
           <section className="mb-10 md:mb-16">
             <h2 className="font-display text-lg md:text-2xl text-luxury-black font-medium tracking-wide mb-6 md:mb-8 text-center uppercase">
               {t('international.marketsTitle')}
