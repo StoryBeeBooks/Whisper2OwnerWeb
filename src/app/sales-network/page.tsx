@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { Globe, Store, Handshake, ShoppingCart, Building2, Box } from 'lucide-react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
@@ -11,12 +12,12 @@ export default function SalesNetworkPage() {
   const { t } = useLanguage();
 
   const salesChannels = [
-    { nameKey: 'salesNetwork.channel.amazon', descKey: 'salesNetwork.channel.amazon.desc', icon: '🛒' },
-    { nameKey: 'salesNetwork.channel.shopify', descKey: 'salesNetwork.channel.shopify.desc', icon: '🏪' },
-    { nameKey: 'salesNetwork.channel.retail', descKey: 'salesNetwork.channel.retail.desc', icon: '🏬' },
-    { nameKey: 'salesNetwork.channel.wholesale', descKey: 'salesNetwork.channel.wholesale.desc', icon: '📦' },
-    { nameKey: 'salesNetwork.channel.marketplace', descKey: 'salesNetwork.channel.marketplace.desc', icon: '🌐' },
-    { nameKey: 'salesNetwork.channel.directSales', descKey: 'salesNetwork.channel.directSales.desc', icon: '🤝' },
+    { nameKey: 'salesNetwork.channel.amazon', descKey: 'salesNetwork.channel.amazon.desc', icon: ShoppingCart },
+    { nameKey: 'salesNetwork.channel.shopify', descKey: 'salesNetwork.channel.shopify.desc', icon: Store },
+    { nameKey: 'salesNetwork.channel.retail', descKey: 'salesNetwork.channel.retail.desc', icon: Building2 },
+    { nameKey: 'salesNetwork.channel.wholesale', descKey: 'salesNetwork.channel.wholesale.desc', icon: Box },
+    { nameKey: 'salesNetwork.channel.marketplace', descKey: 'salesNetwork.channel.marketplace.desc', icon: Globe },
+    { nameKey: 'salesNetwork.channel.directSales', descKey: 'salesNetwork.channel.directSales.desc', icon: Handshake },
   ];
 
   const capabilities = [
@@ -123,21 +124,24 @@ export default function SalesNetworkPage() {
             </h2>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-              {salesChannels.map((channel) => (
-                <div
-                  key={channel.nameKey}
-                  className="p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury
-                             hover:border-luxury-black hover:shadow-luxury transition-all duration-300 text-center"
-                >
-                  <span className="text-3xl md:text-4xl mb-3 block">{channel.icon}</span>
-                  <h3 className="font-display text-sm md:text-base text-luxury-black font-medium mb-1 md:mb-2">
-                    {t(channel.nameKey)}
-                  </h3>
-                  <p className="text-luxury-gray text-xs md:text-sm font-light">
-                    {t(channel.descKey)}
-                  </p>
-                </div>
-              ))}
+              {salesChannels.map((channel) => {
+                const IconComponent = channel.icon;
+                return (
+                  <div
+                    key={channel.nameKey}
+                    className="p-4 md:p-6 bg-warm-card border border-warm-sand rounded-luxury
+                               hover:border-luxury-black hover:shadow-luxury transition-all duration-300 text-center"
+                  >
+                    <IconComponent strokeWidth={1} className="w-8 h-8 md:w-10 md:h-10 mb-3 mx-auto text-luxury-black/70" />
+                    <h3 className="font-display text-sm md:text-base text-luxury-black font-medium mb-1 md:mb-2">
+                      {t(channel.nameKey)}
+                    </h3>
+                    <p className="text-luxury-gray text-xs md:text-sm font-light">
+                      {t(channel.descKey)}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
