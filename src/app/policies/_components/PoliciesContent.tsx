@@ -393,55 +393,201 @@ function PrivacyPolicy() {
     <div>
       <SectionTitle>Privacy Policy</SectionTitle>
       
+      <p className="text-sm text-luxury-gray mb-6">
+        This Privacy Policy describes how Whisper2Owner (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, uses, stores, shares, and 
+        protects information obtained through our website and services. By accessing or using our website or services, you 
+        consent to the practices described in this Privacy Policy.
+      </p>
+
       <SubSection title="1. Information We Collect">
         <p>
-          <strong>1.1 Personal Information:</strong> We collect information you provide directly, including name, email address,
-          company information, and any other details you submit through our contact forms or service agreements.
+          <strong>1.1 Information You Provide:</strong> We may collect information that you voluntarily provide to us, including 
+          but not limited to: name, email address, phone number, company name, business information, mailing address, payment 
+          information, and any other information you choose to provide through forms, communications, registrations, subscriptions, 
+          or service requests.
         </p>
         <p>
-          <strong>1.2 Usage Data:</strong> We automatically collect certain information about your device and how you interact
-          with our website, including IP address, browser type, pages visited, and time spent on pages.
+          <strong>1.2 Automatically Collected Information:</strong> When you access our website or services, we may automatically 
+          collect certain information, including but not limited to: IP address, device identifiers, browser type and version, 
+          operating system, referring/exit pages, date and time stamps, clickstream data, pages viewed, links clicked, time spent 
+          on pages, geolocation data, and other usage information.
+        </p>
+        <p>
+          <strong>1.3 Cookies and Tracking Technologies:</strong> We may use cookies, web beacons, pixels, tags, scripts, and 
+          similar tracking technologies to collect information about your browsing behavior, preferences, and interactions with 
+          our website. See our Cookies Policy for more details.
+        </p>
+        <p>
+          <strong>1.4 Third-Party Information:</strong> We may receive information about you from third-party sources, including 
+          business partners, service providers, data brokers, social media platforms, publicly available sources, and other parties 
+          with whom you interact.
+        </p>
+        <p>
+          <strong>1.5 Communications:</strong> We may collect and retain information from your communications with us, including 
+          emails, messages, phone calls, chat conversations, and other correspondence.
         </p>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
       <SubSection title="2. How We Use Your Information">
-        <p>We use collected information to:</p>
+        <p>We may use collected information for various purposes, including but not limited to:</p>
         <ul className="list-disc list-inside space-y-2 ml-4">
-          <li>Provide and improve our services</li>
-          <li>Communicate with you about services and opportunities</li>
-          <li>Analyze website usage and optimize user experience</li>
-          <li>Comply with legal obligations</li>
+          <li>Providing, operating, maintaining, and improving our website and services</li>
+          <li>Processing transactions, registrations, and service requests</li>
+          <li>Communicating with you about services, opportunities, updates, newsletters, and promotional materials</li>
+          <li>Responding to inquiries, requests, and customer service needs</li>
+          <li>Analyzing usage patterns, trends, and user behavior to optimize user experience</li>
+          <li>Conducting research, analytics, and statistical analysis</li>
+          <li>Personalizing content, features, and recommendations</li>
+          <li>Detecting, preventing, and addressing security issues, fraud, or illegal activities</li>
+          <li>Enforcing our Terms of Use and other policies</li>
+          <li>Complying with legal obligations, regulations, and law enforcement requests</li>
+          <li>Protecting our rights, property, and safety, and that of our users and third parties</li>
+          <li>Marketing, advertising, and promotional purposes</li>
+          <li>Any other purposes disclosed at the time of collection or with your consent</li>
         </ul>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="3. Information Sharing">
+      <SubSection title="3. Information Sharing and Disclosure">
         <p>
-          We do not sell your personal information. We may share information with trusted service providers who assist
-          in operating our website and conducting our business, subject to confidentiality agreements.
+          <strong>3.1 Service Providers:</strong> We may share information with third-party service providers, contractors, 
+          vendors, and partners who assist us in operating our website, conducting business, providing services, processing 
+          payments, analyzing data, hosting, marketing, or supporting our operations. These parties may have access to your 
+          information to perform tasks on our behalf.
+        </p>
+        <p>
+          <strong>3.2 Business Transfers:</strong> In the event of a merger, acquisition, reorganization, sale of assets, 
+          bankruptcy, or other business transaction, your information may be transferred, sold, or assigned to successor entities 
+          or third parties as part of such transaction.
+        </p>
+        <p>
+          <strong>3.3 Legal Requirements:</strong> We may disclose information if required by law, regulation, legal process, 
+          subpoena, court order, or governmental request, or if we believe disclosure is necessary to enforce our rights, protect 
+          our property, ensure safety, investigate fraud, or comply with legal obligations.
+        </p>
+        <p>
+          <strong>3.4 Business Purposes:</strong> We may share information with business partners, affiliates, collaborators, or 
+          third parties for business development, partnership opportunities, marketing purposes, or other legitimate business purposes.
+        </p>
+        <p>
+          <strong>3.5 Aggregated or Anonymized Data:</strong> We may share aggregated, de-identified, or anonymized information 
+          that does not personally identify you for any purpose, including analytics, research, marketing, or business purposes.
+        </p>
+        <p>
+          <strong>3.6 With Your Consent:</strong> We may share information for any other purpose disclosed to you at the time of 
+          collection or with your consent.
+        </p>
+        <p>
+          We do not currently sell personal information for monetary consideration. However, we reserve the right to share, transfer, 
+          or disclose information as described above and for other business purposes. Information sharing practices may change, and 
+          continued use of our services constitutes acceptance of such changes.
         </p>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="4. Data Security">
+      <SubSection title="4. Data Retention">
         <p>
-          We implement appropriate technical and organizational measures to protect your personal information against
-          unauthorized access, alteration, disclosure, or destruction.
+          We retain information for as long as necessary to fulfill the purposes described in this Privacy Policy, comply with 
+          legal obligations, resolve disputes, enforce agreements, or as otherwise required or permitted by law. Retention periods 
+          may vary depending on the type of information, purpose of collection, and legal requirements. We may retain certain 
+          information in backup or archived form even after you request deletion.
         </p>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="5. Your Rights">
+      <SubSection title="5. Data Security">
         <p>
-          You have the right to access, correct, or delete your personal information. To exercise these rights,
-          please contact us at mario.xu@wtheory.com.
+          We implement reasonable technical, administrative, and physical security measures designed to protect information against 
+          unauthorized access, use, alteration, or disclosure. However, no method of transmission or storage is completely secure. 
+          We cannot guarantee absolute security, and you acknowledge that you provide information at your own risk.
+        </p>
+        <p>
+          You are responsible for maintaining the confidentiality of your account credentials and for all activities under your 
+          account. We are not liable for any unauthorized access, use, or loss of information resulting from your failure to maintain 
+          security or from circumstances beyond our reasonable control.
         </p>
       </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="6. Your Rights and Choices">
+        <p>
+          Depending on your jurisdiction, you may have certain rights regarding your personal information, which may include rights 
+          to access, correct, update, delete, restrict processing, object to processing, or request portability of your information. 
+          However, these rights are subject to limitations, exceptions, and legal requirements.
+        </p>
+        <p>
+          To exercise any rights, you may contact us at mario.xu@wtheory.com. We will respond to requests in accordance with 
+          applicable law. We may require verification of your identity and may deny requests that are unreasonable, excessive, 
+          technically infeasible, or not required by law. Some information may not be able to be deleted due to legal, operational, 
+          or technical reasons.
+        </p>
+        <p>
+          You may opt out of certain marketing communications by following unsubscribe instructions provided in emails or by 
+          contacting us. However, you may not opt out of transactional, administrative, or legal communications.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="7. Third-Party Services and Links">
+        <p>
+          Our website may contain links to third-party websites, services, or content. We are not responsible for the privacy 
+          practices, policies, or content of third parties. Your interactions with third-party services are governed by their own 
+          privacy policies. We encourage you to review the privacy policies of any third-party services you access.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="8. International Data Transfers">
+        <p>
+          Your information may be transferred to, stored, and processed in countries other than your country of residence, which 
+          may have different data protection laws. By using our services, you consent to the transfer of your information to other 
+          jurisdictions. We may use standard contractual clauses or other mechanisms to facilitate transfers where required by law.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="9. Children's Privacy">
+        <p>
+          Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from 
+          children. If you believe we have collected information from a child, please contact us, and we will take steps to delete 
+          such information.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="10. Changes to Privacy Policy">
+        <p>
+          We reserve the right to modify, update, or change this Privacy Policy at any time, in our sole discretion, with or without 
+          notice. Changes will be effective immediately upon posting on our website. Your continued use of our website or services 
+          following any changes constitutes acceptance of the updated Privacy Policy. It is your responsibility to review this policy 
+          periodically.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="11. Contact Information">
+        <p>
+          If you have questions or concerns about this Privacy Policy or our privacy practices, please contact us at 
+          mario.xu@wtheory.com.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <p className="text-xs text-luxury-gray-light italic">
+        Last Updated: January 7, 2026
+      </p>
     </div>
   );
 }
@@ -731,42 +877,174 @@ function CookiesPolicy() {
     <div>
       <SectionTitle>Cookies Policy</SectionTitle>
       
-      <SubSection title="What Are Cookies">
+      <p className="text-sm text-luxury-gray mb-6">
+        This Cookies Policy explains how Whisper2Owner (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) uses cookies, web beacons, pixels, 
+        and similar tracking technologies (collectively, &quot;Cookies&quot;) on our website and services. By continuing to use our 
+        website, you consent to our use of Cookies as described in this policy.
+      </p>
+
+      <SubSection title="1. What Are Cookies and Tracking Technologies">
         <p>
-          Cookies are small text files that are placed on your device when you visit a website. They are widely used
-          to make websites work more efficiently and provide information to the website owners.
+          Cookies are small text files stored on your device (computer, tablet, smartphone, or other electronic device) when you 
+          visit a website. Cookies allow websites to recognize your device, remember information about your visit, track your 
+          preferences, and enhance your browsing experience.
         </p>
-      </SubSection>
-
-      <div className="h-px bg-warm-sand my-8" />
-
-      <SubSection title="How We Use Cookies">
-        <p>We use cookies for the following purposes:</p>
+        <p>
+          In addition to cookies, we may use other tracking technologies including:
+        </p>
         <ul className="list-disc list-inside space-y-2 ml-4">
-          <li><strong>Essential Cookies:</strong> Required for the website to function properly</li>
-          <li><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our website</li>
-          <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+          <li><strong>Web Beacons/Pixels:</strong> Small graphic images embedded in web pages or emails that track page views and email opens</li>
+          <li><strong>Local Storage:</strong> Technology that stores data locally on your device</li>
+          <li><strong>Scripts and Tags:</strong> Code that collects information about your browsing activity</li>
+          <li><strong>Device Fingerprinting:</strong> Techniques that identify your device based on its unique characteristics</li>
+          <li><strong>Session Replay Tools:</strong> Technology that may record your interactions with our website</li>
         </ul>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="Managing Cookies">
+      <SubSection title="2. Types of Cookies We Use">
         <p>
-          Most web browsers allow you to control cookies through their settings. You can set your browser to refuse
-          cookies or delete certain cookies. However, if you block or delete cookies, some features of our website
-          may not function properly.
+          We may use various types of cookies and tracking technologies for different purposes:
+        </p>
+        <p>
+          <strong>2.1 Essential/Necessary Cookies:</strong> These cookies are required for the website to function properly and 
+          cannot be disabled. They enable core functionality such as security, authentication, navigation, and access to secure 
+          areas. Without these cookies, certain features and services may not be available.
+        </p>
+        <p>
+          <strong>2.2 Performance and Analytics Cookies:</strong> These cookies collect information about how visitors use our 
+          website, including pages visited, time spent on pages, links clicked, error messages, and other usage patterns. We use 
+          this information to analyze website performance, understand user behavior, identify issues, and improve our services.
+        </p>
+        <p>
+          <strong>2.3 Functionality and Preference Cookies:</strong> These cookies remember your choices, settings, and preferences 
+          (such as language, region, login information, and customization options) to provide enhanced, personalized features and 
+          content.
+        </p>
+        <p>
+          <strong>2.4 Advertising and Marketing Cookies:</strong> These cookies are used to deliver relevant advertisements, track 
+          advertising effectiveness, measure campaign performance, and build user profiles for marketing purposes. They may be set 
+          by us or third-party advertising partners.
+        </p>
+        <p>
+          <strong>2.5 Social Media Cookies:</strong> These cookies enable social media features and allow you to share content on 
+          social platforms. They may track your browsing activity across different websites.
+        </p>
+        <p>
+          <strong>2.6 Targeting and Profiling Cookies:</strong> These cookies build profiles based on your browsing habits and may 
+          be used for targeted advertising, personalization, and behavioral analysis across multiple websites and platforms.
         </p>
       </SubSection>
 
       <div className="h-px bg-warm-sand my-8" />
 
-      <SubSection title="Third-Party Cookies">
+      <SubSection title="3. Session vs. Persistent Cookies">
         <p>
-          We may use third-party services that set their own cookies, such as analytics providers. These cookies
-          are governed by the respective third parties&apos; privacy policies.
+          <strong>Session Cookies:</strong> Temporary cookies that are deleted when you close your browser. They enable website 
+          functionality during your browsing session.
+        </p>
+        <p>
+          <strong>Persistent Cookies:</strong> Cookies that remain on your device for a set period or until manually deleted. They 
+          remember your preferences and actions across multiple browsing sessions.
         </p>
       </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="4. Third-Party Cookies and Services">
+        <p>
+          We may use third-party services that set their own cookies and tracking technologies on our website. These third parties 
+          may include:
+        </p>
+        <ul className="list-disc list-inside space-y-2 ml-4">
+          <li>Analytics providers (e.g., Google Analytics, Mixpanel, Adobe Analytics)</li>
+          <li>Advertising networks and platforms</li>
+          <li>Social media platforms (e.g., Facebook, LinkedIn, Twitter)</li>
+          <li>Content delivery networks</li>
+          <li>Payment processors</li>
+          <li>Customer relationship management (CRM) tools</li>
+          <li>Email service providers</li>
+          <li>Other marketing, analytics, and business tools</li>
+        </ul>
+        <p>
+          Third-party cookies are governed by the respective third parties&apos; privacy policies and terms. We do not control third-party 
+          cookies and are not responsible for their practices. Third parties may collect information about your online activities 
+          over time and across different websites.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="5. How We Use Information Collected Through Cookies">
+        <p>Information collected through cookies and tracking technologies may be used for various purposes, including:</p>
+        <ul className="list-disc list-inside space-y-2 ml-4">
+          <li>Operating and maintaining the website</li>
+          <li>Authenticating users and maintaining security</li>
+          <li>Remembering your preferences and settings</li>
+          <li>Personalizing content and user experience</li>
+          <li>Analyzing usage patterns, trends, and website performance</li>
+          <li>Conducting research and analytics</li>
+          <li>Measuring advertising effectiveness and ROI</li>
+          <li>Delivering targeted advertisements and marketing communications</li>
+          <li>Building user profiles for business purposes</li>
+          <li>Detecting and preventing fraud or security issues</li>
+          <li>Complying with legal obligations</li>
+          <li>Any other purposes consistent with this policy or disclosed at the time of collection</li>
+        </ul>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="6. Managing Cookies and Your Choices">
+        <p>
+          <strong>6.1 Browser Settings:</strong> Most web browsers automatically accept cookies, but you can modify your browser 
+          settings to decline cookies or alert you when cookies are being sent. Browser settings vary, so consult your browser&apos;s 
+          help documentation for instructions.
+        </p>
+        <p>
+          <strong>6.2 Limitations of Blocking Cookies:</strong> If you disable, block, or delete cookies, some features and functionality 
+          of our website may not work properly, and your user experience may be limited. Certain cookies are essential for website 
+          operation and cannot be disabled through browser settings alone.
+        </p>
+        <p>
+          <strong>6.3 Third-Party Opt-Out:</strong> To opt out of third-party advertising cookies, you may visit industry opt-out pages 
+          or use third-party tools. However, opting out does not mean you will stop receiving advertisements; it means advertisements 
+          may be less relevant to your interests.
+        </p>
+        <p>
+          <strong>6.4 Mobile Devices:</strong> Mobile devices may offer settings to limit tracking or reset advertising identifiers. 
+          Refer to your device manufacturer&apos;s instructions for managing mobile tracking.
+        </p>
+        <p>
+          <strong>6.5 Do Not Track:</strong> Our website does not currently respond to &quot;Do Not Track&quot; signals or similar mechanisms. Third 
+          parties may collect information about your online activities over time and across different websites.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="7. Consent and Changes">
+        <p>
+          By continuing to use our website without adjusting your browser settings to refuse cookies, you consent to our use of 
+          cookies as described in this policy. We may update our use of cookies and this policy at any time. Continued use of the 
+          website after changes constitutes acceptance of updated practices.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <SubSection title="8. Contact Information">
+        <p>
+          If you have questions about our use of cookies or this Cookies Policy, please contact us at mario.xu@wtheory.com.
+        </p>
+      </SubSection>
+
+      <div className="h-px bg-warm-sand my-8" />
+
+      <p className="text-xs text-luxury-gray-light italic">
+        Last Updated: January 7, 2026
+      </p>
     </div>
   );
 }
