@@ -1,10 +1,126 @@
 'use client';
 
+import { useRef, Suspense } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { 
+  useGLTF, 
+  Environment, 
+  Html,
+  Loader,
+  OrbitControls 
+} from '@react-three/drei';
+import * as THREE from 'three';
+
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 
+// Configuration
+const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
 const VIDEO_URL = 'https://assets.k12path.com/whisper2owner/ocean.mp4';
+const SHIP_SCALE = 50;
+
+// Ship with Code-Driven Floating Animation (Responsive)
+function Ship() {
+  const { scene } = useGLTF(SHIP_URL);
+  const shipRef = useRef<THREE.Group>(null);
+  const { viewport } = useThree();
+
+  // Responsive scale: shrinks on mobile, maxes out at 1x on desktop
+  const scaleFactor = Math.min(viewport.width / 10, 1);
+  const responsiveScale = SHIP_SCALE * scaleFactor;
+
+  // Floating animation parameters
+  const bobAmplitude = 2;
+  const bobFrequency = 0.8;
+  const rockAmplitude = 0.03;
+  const rockFrequency = 0.5;
+
+  useFrame((state) => {
+    if (shipRef.current) {
+      const time = state.clock.elapsedTime;
+      
+      // Bob up and down using sine wave
+      shipRef.current.position.y = -33 + Math.sin(time * bobFrequency) * bobAmplitude;
+      
+      // Rock back and forth (rotation on Z axis)
+      shipRef.current.rotation.z = Math.sin(time * rockFrequency) * rockAmplitude;
+      
+      // Slight pitch forward/backward (rotation on X axis)
+      shipRef.current.rotation.x = Math.sin(time * rockFrequency * 0.7) * (rockAmplitude * 0.5);
+    }
+  });
+
+  return (
+    <group ref={shipRef} position={[0, -33, 0]}>
+      <primitive 
+        object={scene} 
+        scale={responsiveScale}
+      />
+    </group>
+  );
+}
+
+// Text Overlay - positioned in upper area
+function Overlay({ title, subtitle }: { title: string; subtitle: string }) {
+  return (
+    <Html fullscreen className="pointer-events-none">
+      <div className="absolute top-[30%] sm:top-[35%] left-0 w-full text-center px-4 sm:px-6 z-10 transform -translate-y-1/2">
+        <h1 
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-3 sm:mb-4 leading-tight"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
+        >
+          {title}
+        </h1>
+        <p 
+          className="text-white/90 text-[10px] sm:text-xs md:text-sm tracking-wider sm:tracking-luxury uppercase font-light leading-relaxed max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-4 sm:mb-6"
+          style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.5)' }}
+        >
+          {subtitle}
+        </p>
+      </div>
+    </Html>
+  );
+}
+
+// Main Scene Content
+function SceneContent({ title, subtitle }: { title: string; subtitle: string }) {
+  return (
+    <>
+      {/* Strong Lighting */}
+      <ambientLight intensity={2} />
+      <directionalLight 
+        position={[10, 20, 10]} 
+        intensity={3} 
+        castShadow
+      />
+      <directionalLight 
+        position={[-10, 10, -10]} 
+        intensity={2} 
+      />
+      <directionalLight 
+        position={[0, 10, -20]} 
+        intensity={1.5} 
+      />
+      
+      {/* Environment for realistic reflections and IBL lighting */}
+      <Environment preset="sunset" background={false} environmentIntensity={1.5} />
+      
+      {/* Ship */}
+      <Ship />
+      
+      {/* OrbitControls for debugging */}
+      <OrbitControls 
+        enableZoom={true}
+        enablePan={true}
+        enableRotate={true}
+      />
+      
+      {/* Text Overlay */}
+      <Overlay title={title} subtitle={subtitle} />
+    </>
+  );
+}
 
 // Main OceanScene Component
 export default function OceanScene() {
@@ -15,43 +131,61 @@ export default function OceanScene() {
       {/* Navigation hamburger menu */}
       <Navigation />
       
-      {/* Hero Section with Video Background */}
-      <section className="relative h-[calc(100vh-52px)] w-full overflow-hidden">
+      <main className="h-[calc(100vh-52px)] w-full relative overflow-hidden">
         {/* Video Background */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         
-        {/* Dark overlay - gradient from transparent to dark in bottom half */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-40% via-black/50 via-70% to-black/80 to-100%" />
+        {/* 3D Canvas with Ship - transparent background */}
+        <Canvas
+          camera={{ position: [0, 5, 25], fov: 45, near: 0.1, far: 2000 }}
+          className="absolute inset-0 z-10"
+          shadows
+          gl={{ alpha: true }}
+        >
+          <Suspense fallback={null}>
+            <SceneContent title={t('home.title')} subtitle={t('home.subtitle')} />
+          </Suspense>
+        </Canvas>
         
-        {/* Content - positioned in bottom half */}
-        <div className="absolute inset-0 flex flex-col justify-end pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 
-              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4 md:mb-6"
-              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
-            >
-              {t('home.title')}
-            </h1>
-            <p 
-              className="text-white/90 text-sm sm:text-base md:text-lg font-light max-w-2xl mx-auto"
-              style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
-            >
-              {t('home.subtitle')}
-            </p>
-          </div>
-        </div>
-      </section>
+        {/* Loading indicator */}
+        <Loader
+          containerStyles={{
+            background: 'rgba(0,30,54,0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          innerStyles={{
+            background: '#1a3a5c',
+            width: '300px',
+            height: '3px',
+          }}
+          barStyles={{
+            background: 'linear-gradient(90deg, #4a9eff, #87ceeb)',
+            height: '3px',
+          }}
+          dataStyles={{
+            color: 'white',
+            fontFamily: 'Josefin Sans, sans-serif',
+            fontSize: '12px',
+            letterSpacing: '0.15em',
+          }}
+        />
+      </main>
       
       {/* Footer */}
       <Footer />
     </div>
   );
 }
+
+// Preload ship model
+useGLTF.preload(SHIP_URL);
