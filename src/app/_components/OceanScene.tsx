@@ -9,14 +9,16 @@ import {
   ScrollControls, 
   useScroll,
   Html,
-  Loader 
+  Loader,
+  OrbitControls 
 } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Configuration - adjust these as needed
 const SEA_URL = 'https://assets.k12path.com/whisper2owner/sea.glb';
 const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
-const SHIP_SCALE = 0.5;
+const SEA_SCALE = 100;  // Try 10, 100, or 0.01 depending on model
+const SHIP_SCALE = 50;  // Adjust based on model size
 const ANIMATION_SPEED = 0.4; // 40% speed (60% slower)
 
 // Animated Sea Component
@@ -52,8 +54,8 @@ function Sea() {
   return (
     <primitive 
       object={scene} 
-      position={[0, -2, 0]}
-      scale={10}
+      position={[0, -50, 0]}
+      scale={SEA_SCALE}
     />
   );
 }
@@ -64,7 +66,7 @@ function Ship() {
   const shipRef = useRef<THREE.Group>(null);
 
   // Floating animation parameters
-  const bobAmplitude = 0.15; // How much the ship bobs up/down
+  const bobAmplitude = 2; // How much the ship bobs up/down
   const bobFrequency = 0.8;  // Speed of bobbing
   const rockAmplitude = 0.03; // How much the ship rocks side to side (radians)
   const rockFrequency = 0.5;  // Speed of rocking
@@ -115,25 +117,11 @@ function CameraController() {
   return null;
 }
 
-// Text Overlay
+// Text Overlay (simplified for debugging)
 function Overlay() {
-  const scroll = useScroll();
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useFrame(() => {
-    if (heroRef.current) {
-      // Fade out hero text as we zoom in (0% to 20% scroll)
-      const opacity = 1 - scroll.range(0, 0.20);
-      heroRef.current.style.opacity = String(opacity);
-    }
-  });
-
   return (
     <Html fullscreen className="pointer-events-none">
-      <div 
-        ref={heroRef}
-        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
-      >
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
         <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-wide mb-6 leading-tight max-w-4xl drop-shadow-lg">
           Whisper2Owner
         </h1>
@@ -150,12 +138,16 @@ function Overlay() {
 function SceneContent() {
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.5} />
+      {/* Strong Lighting for visibility */}
+      <ambientLight intensity={3} />
       <directionalLight 
-        position={[10, 20, 10]} 
-        intensity={1.5} 
+        position={[100, 200, 100]} 
+        intensity={5} 
         castShadow
+      />
+      <directionalLight 
+        position={[-100, 100, -100]} 
+        intensity={2} 
       />
       
       {/* Environment for realistic reflections */}
@@ -165,8 +157,14 @@ function SceneContent() {
       <Sea />
       <Ship />
       
-      {/* Camera and Overlay controlled by scroll */}
-      <CameraController />
+      {/* OrbitControls for debugging - allows mouse to rotate/zoom */}
+      <OrbitControls 
+        enableZoom={true}
+        enablePan={true}
+        enableRotate={true}
+      />
+      
+      {/* Text Overlay */}
       <Overlay />
     </>
   );
@@ -177,14 +175,12 @@ export default function OceanScene() {
   return (
     <div className="h-screen w-full bg-black relative">
       <Canvas
-        camera={{ position: [0, 12, 15], fov: 50 }}
+        camera={{ position: [0, 300, 400], fov: 60 }}
         className="absolute top-0 left-0 w-full h-full"
         shadows
       >
         <Suspense fallback={null}>
-          <ScrollControls pages={4} damping={0.2}>
-            <SceneContent />
-          </ScrollControls>
+          <SceneContent />
         </Suspense>
         
         {/* Dark blue gradient background for ocean sky */}
