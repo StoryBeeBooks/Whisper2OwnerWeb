@@ -301,16 +301,6 @@ function Globe() {
         />
       </Sphere>
       
-      {/* Subtle grid lines for globe */}
-      <Sphere args={[2.003, 36, 36]}>
-        <meshBasicMaterial
-          color="#88ccff"
-          transparent
-          opacity={0.08}
-          wireframe
-        />
-      </Sphere>
-      
       {/* Continent dots */}
       <ContinentDots />
       
@@ -374,22 +364,7 @@ function GlobeContent() {
 // Exported component
 export default function GlobeScene() {
   return (
-    <section className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative bg-gradient-to-b from-slate-900 via-slate-800 to-luxury-black overflow-hidden">
-      {/* Stars background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(100)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-[2px] h-[2px] bg-white rounded-full opacity-60"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-            }}
-          />
-        ))}
-      </div>
-      
+    <section className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative bg-white overflow-hidden">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
