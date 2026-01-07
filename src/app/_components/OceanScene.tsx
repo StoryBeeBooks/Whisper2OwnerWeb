@@ -37,7 +37,7 @@ function Ship() {
       const time = state.clock.elapsedTime;
       
       // Bob up and down using sine wave
-      shipRef.current.position.y = -4 + Math.sin(time * bobFrequency) * bobAmplitude;
+      shipRef.current.position.y = -10 + Math.sin(time * bobFrequency) * bobAmplitude;
       
       // Rock back and forth (rotation on Z axis)
       shipRef.current.rotation.z = Math.sin(time * rockFrequency) * rockAmplitude;
@@ -48,7 +48,7 @@ function Ship() {
   });
 
   return (
-    <group ref={shipRef} position={[0, -4, 0]}>
+    <group ref={shipRef} position={[0, -10, 0]}>
       <primitive 
         object={scene} 
         scale={responsiveScale}
@@ -57,11 +57,11 @@ function Ship() {
   );
 }
 
-// Text Overlay - positioned at bottom
+// Text Overlay - positioned at top
 function Overlay() {
   return (
     <Html fullscreen className="pointer-events-none">
-      <div className="absolute bottom-40 left-0 w-full text-center px-6 z-10">
+      <div className="absolute top-20 left-0 w-full text-center px-6 z-10">
         <h1 
           className="font-display text-4xl md:text-5xl lg:text-6xl text-white font-light tracking-wide mb-4 leading-tight"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 40px rgba(0,0,0,0.6)' }}
