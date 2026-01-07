@@ -11,6 +11,9 @@ import {
 } from '@react-three/drei';
 import * as THREE from 'three';
 
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
+
 // Configuration
 const SHIP_URL = 'https://assets.k12path.com/whisper2owner/ship.glb';
 const SHIP_SCALE = 50;
@@ -122,43 +125,51 @@ function SceneContent() {
 // Main OceanScene Component
 export default function OceanScene() {
   return (
-    <main className="h-screen w-full relative bg-gradient-to-b from-white from-0% via-sky-200 via-70% to-[#001e36] to-100%">
-      <Canvas
-        camera={{ position: [0, 5, 35], fov: 45 }}
-        className="absolute inset-0 z-0"
-        shadows
-        gl={{ alpha: true }}
-      >
-        <Suspense fallback={null}>
-          <SceneContent />
-        </Suspense>
-      </Canvas>
+    <>
+      {/* Navigation hamburger menu */}
+      <Navigation />
       
-      {/* Loading indicator */}
-      <Loader
-        containerStyles={{
-          background: 'linear-gradient(to bottom, white, #7dd3fc, #001e36)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        innerStyles={{
-          background: '#1a3a5c',
-          width: '300px',
-          height: '3px',
-        }}
-        barStyles={{
-          background: 'linear-gradient(90deg, #4a9eff, #87ceeb)',
-          height: '3px',
-        }}
-        dataStyles={{
-          color: '#001e36',
-          fontFamily: 'Josefin Sans, sans-serif',
-          fontSize: '12px',
-          letterSpacing: '0.15em',
-        }}
-      />
-    </main>
+      <main className="h-screen w-full relative bg-gradient-to-b from-white from-0% via-sky-200 via-70% to-[#001e36] to-100%">
+        <Canvas
+          camera={{ position: [0, 5, 35], fov: 45 }}
+          className="absolute inset-0 z-0"
+          shadows
+          gl={{ alpha: true }}
+        >
+          <Suspense fallback={null}>
+            <SceneContent />
+          </Suspense>
+        </Canvas>
+        
+        {/* Loading indicator */}
+        <Loader
+          containerStyles={{
+            background: 'linear-gradient(to bottom, white, #7dd3fc, #001e36)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          innerStyles={{
+            background: '#1a3a5c',
+            width: '300px',
+            height: '3px',
+          }}
+          barStyles={{
+            background: 'linear-gradient(90deg, #4a9eff, #87ceeb)',
+            height: '3px',
+          }}
+          dataStyles={{
+            color: '#001e36',
+            fontFamily: 'Josefin Sans, sans-serif',
+            fontSize: '12px',
+            letterSpacing: '0.15em',
+          }}
+        />
+      </main>
+      
+      {/* Footer */}
+      <Footer />
+    </>
   );
 }
 
